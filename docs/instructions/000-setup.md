@@ -35,9 +35,9 @@ volta install pnpm
 ## 📥 Retrieve source code and install dependencies
 
 ```sh
-git clone https://github.com/marmicode/whiskmate.git --branch pragmatic-angular-testing
+git clone https://github.com/marmicode/pragmatic-angular-testing-workshop.git
 
-cd whiskmate
+cd pragmatic-angular-testing-workshop
 
 pnpm install
 ```

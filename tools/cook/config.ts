@@ -112,6 +112,6 @@ const exercises: Exercise[] = [
 ];
 
 export const config: Config = {
-  base: 'pragmatic-angular-testing',
+  base: 'main',
   exercises,
 };

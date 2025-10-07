@@ -1,7 +1,7 @@
 ## Context
 
 - This is an Angular testing workshop repository.
-- Each exercise is in the `apps/<number>-<exercise-name>-starter` folder on `pragmatic-angular-testing` branch.
+- Each exercise is in the `apps/<number>-<exercise-name>-starter` folder on `main` branch.
 - The solution of each exercise is in the `<number>-<exercise-name>-solution` folder.
 - Exercise instructions are in `docs/instructions`.
 
@@ -28,4 +28,4 @@
 
 ## Other Instructions
 
-- To compare with other branches, use git locally or if needed, fallback to visiting the repository at [https://github.com/marmicode/whiskmate](https://github.com/marmicode/whiskmate)
+- To compare with other branches, use git locally or if needed, fallback to visiting the repository at [https://github.com/marmicode/pragmatic-angular-testing-workshop](https://github.com/marmicode/pragmatic-angular-testing-workshop)
