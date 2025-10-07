@@ -1,6 +1,8 @@
 # Pragmatic Angular Testing
 
-👨🏻‍🍳 Welcome to [Marmicode](https://marmicode.io)'s Pragmatic Angular Testing
+👨🏻‍🍳 Welcome to [Marmicode](https://marmicode.io)'s Pragmatic Angular Testing workshop.
+
+Please find the instructions here: https://pat.marmicode.io
 
 ## Setup Instructions
 
@@ -10,8 +12,8 @@
 
 # More Resources
 
-## [📚 Marmicode Courses](https://courses.marmicode.io)
+## [📺 Pragmatic Angular Testing Video Course](https://courses.marmicode.io)
 
-## [👨🏻‍🏫 Marmicode Workshops](https://marmicode.eventbrite.com)
+## [👨🏻‍🏫 Marmicode Workshops](https://marmicode.io/workshops)
 
 ## [📝 Marmicode Blog & Recipes](https://marmicode.io)
