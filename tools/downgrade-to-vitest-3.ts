@@ -114,19 +114,15 @@ function _updateVitestConfig(configPath: string) {
     );
   }
 
-  /* In Vitest 3, browser.instances was browser.name */
-  if (content.includes('instances: [{ browser:')) {
-    content = content.replace(
-      /instances: \[{ browser: '(\w+)' }\]/g,
-      "name: '$1'",
-    );
-  }
-
   /* Remove provider call syntax - in v3 it was a plain object */
   content = content.replace(
     /provider: playwright\(\)/g,
     "provider: 'playwright'",
   );
+
+  /* Isolation is broken in browser mode in v3. */
+  content = content.replace(/ *\/\* TODO: .*?\n/, '');
+  content = content.replace(/ *isolate: false,\n/g, '');
 
   writeFileSync(configPath, content);
   console.log(`✅ Updated ${configPath}`);
