@@ -19,6 +19,7 @@ export default mergeConfig(
       },
       watch: false,
       pool: 'threads',
+      isolate: false,
       projects: [
         {
           extends: true,
