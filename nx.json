@@ -17,22 +17,14 @@
       }
     },
     {
-      "plugin": "@nx/playwright/plugin",
-      "options": {}
-    },
-    {
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "jest"
       }
     },
-    {
-      "plugin": "@nx/vite/plugin",
-      "options": {
-        "testTargetName": "test"
-      }
-    },
-    "@nx/eslint/plugin"
+    "@nx/eslint/plugin",
+    "@nx/playwright/plugin",
+    "@nx/vite/plugin"
   ],
   "generators": {
     "@nx/angular:application": {
@@ -144,7 +136,11 @@
       }
     },
     "@nx/eslint:lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/eslint.config.mjs"
+      ],
       "cache": true
     }
   },
@@ -157,7 +153,8 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/src/test-setup.[jt]s"
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/eslint.config.mjs"
     ]
   },
   "nxCloudId": "68d46679bd4038601a660428"

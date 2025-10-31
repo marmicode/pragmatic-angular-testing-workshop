@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { swcAngularJestTransformer } from '@jscutlery/swc-angular';
 
 export default {
