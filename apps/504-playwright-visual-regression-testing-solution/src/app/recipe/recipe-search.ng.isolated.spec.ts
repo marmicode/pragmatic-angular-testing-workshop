@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { whenAppStable } from '../../testing/when-app-stable';
+import { whenAppStable } from '@whiskmate/testing/when-app-stable';
 import { recipeMother } from '../testing/recipe.mother';
 import {
   provideRecipeRepositoryFake,

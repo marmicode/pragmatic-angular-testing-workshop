@@ -1,6 +1,6 @@
 import './styles.css';
 import '@testing-library/jest-dom';
-import { setUpTestBed } from './testing/set-up-test-bed';
+import { setUpTestBed } from '@whiskmate/testing/set-up-test-bed';
 
 const originalItTodo = it.todo.bind(it);
 /* Strip extra arguments to align with vitest and avoid the following error:

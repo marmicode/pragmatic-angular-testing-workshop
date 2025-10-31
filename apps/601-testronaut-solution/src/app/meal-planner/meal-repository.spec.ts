@@ -1,10 +1,10 @@
-import { MealRepository } from './meal-repository';
 import { TestBed } from '@angular/core/testing';
 import { lastValueFrom } from 'rxjs';
 import { LocalStorage } from '../shared/local-storage';
 import { provideLocalStorageFake } from '../shared/local-storage.fake';
-import { verifyMealRepositoryContract } from './meal-repository.contract';
 import { recipeMother } from '../testing/recipe.mother';
+import { MealRepository } from './meal-repository';
+import { verifyMealRepositoryContract } from './meal-repository.contract';
 
 describe(MealRepository.name, () => {
   verifyMealRepositoryContract(createMealRepository);

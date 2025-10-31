@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { observe } from '@whiskmate/testing/observe';
 import { firstValueFrom } from 'rxjs';
-import { observe } from '../../testing/observe';
 import { recipeMother } from '../testing/recipe.mother';
 import { MealPlanner } from './meal-planner';
 import {

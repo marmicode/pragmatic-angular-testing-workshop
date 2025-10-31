@@ -1,9 +1,9 @@
 import { lastValueFrom } from 'rxjs';
-import { MealRepositoryDef } from './meal-repository.service';
+import { MealRepositoryDef } from './meal-repository';
 import { recipeMother } from '../testing/recipe.mother';
 
 export const verifyMealRepositoryContract = (
-  createMealRepository: CreateMealRepository
+  createMealRepository: CreateMealRepository,
 ) => {
   const burger = recipeMother.withBasicInfo('Burger').build();
   const salad = recipeMother.withBasicInfo('Salad').build();

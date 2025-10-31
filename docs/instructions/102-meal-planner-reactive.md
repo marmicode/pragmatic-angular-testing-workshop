@@ -86,7 +86,7 @@ pnpm cook checkout-impl
 #### with our cross-test-runner `observe` function
 
 ```ts
-import { observe } from '../../testing/observe';
+import { observe } from '@whiskmate/testing/observe';
 
 using observer = observe(source$);
 

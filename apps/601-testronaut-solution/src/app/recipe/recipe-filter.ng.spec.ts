@@ -1,8 +1,8 @@
-import { RecipeFilter } from './recipe-filter.ng';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
-import { observe } from '../../testing/observe';
+import { observe } from '@whiskmate/testing/observe';
 import { RecipeFilterCriteria } from './recipe-filter-criteria';
+import { RecipeFilter } from './recipe-filter.ng';
 
 describe(RecipeFilter.name, () => {
   it('should trigger filterChange output', async () => {
