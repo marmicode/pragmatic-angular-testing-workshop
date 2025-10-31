@@ -194,13 +194,13 @@ function checkoutImplementation(ctx: Context, exercise: Exercise) {
     config: { base },
   } = ctx;
 
-  console.log(`Checking out solution files...`);
+  console.log(`Checking out implementation files...`);
   for (const relativePath of exercise.implementationFiles ?? []) {
-    const solutionFile = `apps/${exercise.id}${SOLUTION_SUFFIX}/${relativePath}`;
+    const implementationFile = `apps/${exercise.id}${SOLUTION_SUFFIX}/${relativePath}`;
     const starterFile = `apps/${exercise.id}${STARTER_SUFFIX}/${relativePath}`;
 
     commandRunner.executeCommand(
-      `git show ${base}:${solutionFile} > ${starterFile}`,
+      `git show ${base}:${implementationFile} > ${starterFile}`,
     );
   }
 }
