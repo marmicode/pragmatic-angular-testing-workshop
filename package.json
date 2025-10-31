@@ -10,7 +10,7 @@
     "build": "nx build",
     "cook": "node --experimental-strip-types tools/cook/main.ts",
     "downgrade-to-jest": "node --experimental-strip-types tools/downgrade-to-jest.ts",
-    "test": "nx test --watch",
+    "test": "nx test --no-tui --watch",
     "test-ui": "nx test-ui",
     "test-ui:watch": "PWTEST_WATCH=1 nx test-ui",
     "playwright-docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.39.0-jammy /bin/bash",
