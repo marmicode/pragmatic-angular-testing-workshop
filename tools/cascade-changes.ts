@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
+import { $ } from 'zx';
 import { config } from './cook/config.ts';
+import { dirname, join } from 'path/posix';
+import { fileURLToPath } from 'url';
+
 const { exercises } = config;
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const CLONE_CHANGES_CMD = join(__dirname, 'clone-changes.sh');
 
 async function main(args: string[]) {
   const [startProject = computeExerciseProjects(exercises[0].id).starter] =
@@ -27,10 +33,7 @@ async function main(args: string[]) {
   const pairwisedProjects = pairwise(filteredProjects);
 
   for (const [source, destination] of pairwisedProjects) {
-    execSync(
-      `pnpm nx run tools:clone-changes --no-tui ${source} ${destination}`,
-      { stdio: 'inherit' },
-    );
+    await $`${CLONE_CHANGES_CMD} ${source} ${destination}`;
   }
 }
 

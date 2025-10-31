@@ -99,7 +99,8 @@
     "typescript-eslint": "^8.40.0",
     "unplugin-swc": "1.5.1",
     "vite": "7.1.5",
-    "vitest": "4.0.6"
+    "vitest": "4.0.6",
+    "zx": "8.8.5"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
