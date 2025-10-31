@@ -64,3 +64,4 @@ vitest.config.*.timestamp*
 
 /playwright-report
 /test-results
+.angular

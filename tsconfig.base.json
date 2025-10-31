@@ -13,7 +13,16 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@whiskmate/testing/observe": ["libs/testing/src/observe.ts"],
+      "@whiskmate/testing/set-up-test-bed": [
+        "libs/testing/src/set-up-test-bed.ts"
+      ],
+      "@whiskmate/testing/when-app-stable": [
+        "libs/testing/src/when-app-stable.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
