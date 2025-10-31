@@ -9,12 +9,12 @@ import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
   it('should search recipes without filtering', async () => {
-    const { getRecipeNames } = createComponent();
+    const { getRecipeNames } = await createComponent();
 
-    expect(await getRecipeNames()).toEqual(['Burger', 'Salad']);
+    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
-  function createComponent() {
+  async function createComponent() {
     TestBed.configureTestingModule({
       providers: [RecipeSearch, provideRecipeRepositoryFake()],
     });
@@ -26,9 +26,10 @@ describe(RecipeSearch.name, () => {
 
     const component = TestBed.inject(RecipeSearch);
 
+    await whenAppStable();
+
     return {
-      async getRecipeNames() {
-        await whenAppStable();
+      getRecipeNames() {
         return component.recipes.value()?.map((recipe) => recipe.name);
       },
     };
