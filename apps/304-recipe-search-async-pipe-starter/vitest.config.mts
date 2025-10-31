@@ -1,23 +1,14 @@
+import { playwright } from '@vitest/browser-playwright';
 import { defineConfig, mergeConfig } from 'vitest/config';
 import viteConfig from './vite.config.mjs';
+import vitestAngularPreset from './vitest-angular-preset';
 
 const testPatterns = ['src/**/*.spec.ts'];
 const browserTestPatterns = ['src/**/*.browser.spec.ts'];
 
 export default mergeConfig(
-  viteConfig,
+  mergeConfig(viteConfig, vitestAngularPreset),
   defineConfig({
-    /* When debugging in the browser, we want to prevent Angular Testing Library
-     * and TestBed from cleaning up after the test in order to interact with the browser.
-     * Therefore, we disable Angular Testing Library clean up and forward the DEBUG_BROWSER
-     * environment variable to move TestBed cleanup from afterEach to beforeEach. */
-    define:
-      process.env.DEBUG_BROWSER != null
-        ? {
-            'process.env.ATL_SKIP_AUTO_CLEANUP': 'true',
-            'process.env.DEBUG_BROWSER': 'true',
-          }
-        : {},
     test: {
       globals: true,
       setupFiles: ['src/test-setup.ts'],
@@ -45,7 +36,7 @@ export default mergeConfig(
             include: browserTestPatterns,
             browser: {
               enabled: true,
-              provider: 'playwright',
+              provider: playwright(),
               instances: [{ browser: 'chromium' }],
             },
           },

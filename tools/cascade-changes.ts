@@ -27,9 +27,10 @@ async function main(args: string[]) {
   const pairwisedProjects = pairwise(filteredProjects);
 
   for (const [source, destination] of pairwisedProjects) {
-    execSync(`pnpm nx run tools:clone-changes ${source} ${destination}`, {
-      stdio: 'inherit',
-    });
+    execSync(
+      `pnpm nx run tools:clone-changes --no-tui ${source} ${destination}`,
+      { stdio: 'inherit' },
+    );
   }
 }
 
