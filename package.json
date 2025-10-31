@@ -10,6 +10,7 @@
     "build": "nx build",
     "cook": "node --experimental-strip-types tools/cook/main.ts",
     "downgrade-to-jest": "node --experimental-strip-types tools/downgrade-to-jest.ts",
+    "downgrade-to-vitest-3": "node --experimental-strip-types tools/downgrade-to-vitest-3.ts",
     "test": "nx test --no-tui --watch",
     "test-ui": "nx test-ui",
     "test-ui:watch": "PWTEST_WATCH=1 nx test-ui",
