@@ -12,7 +12,7 @@ import { Exercise } from './core';
 describe('cook', () => {
   it('does not checkout the implementation if TDD is enabled', async () => {
     const { executedCommands, files } = await runMain({
-      choices: { exercise: '1-recipe-search' },
+      choices: { exercise: '1-recipe-search', useTdd: true },
       files: {
         'apps/1-recipe-search-solution/some-file.txt': '',
         'apps/1-recipe-search-starter/some-file.txt': '',
@@ -43,7 +43,7 @@ describe('cook', () => {
 
   it('goes to exercise and checks out the implementation from solution project', async () => {
     const { executedCommands } = await runMain({
-      choices: { exercise: '1-recipe-search', useTdd: false },
+      choices: { exercise: '1-recipe-search' },
       nxJsonContent: {},
     });
 
@@ -95,13 +95,13 @@ describe('cook', () => {
 
 async function runMain({
   choices,
-  hasLocalChanges,
+  hasLocalChanges = false,
   nxJsonContent,
   files = {},
 }: {
   choices: Record<string, unknown>;
-  hasLocalChanges: boolean;
   nxJsonContent: { defaultProject?: string };
+  hasLocalChanges?: boolean;
   files?: Record<string, string>;
 }) {
   const fileSystemAdapter = new FileSystemFake();

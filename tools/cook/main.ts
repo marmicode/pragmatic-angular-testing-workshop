@@ -168,7 +168,7 @@ async function goToExercise(ctx: Context, exerciseId?: string) {
       type: 'confirm',
       name: 'useTdd',
       message: 'Do you want to use TDD?',
-      initial: true,
+      initial: false,
     });
     tdd = tddChoice.useTdd;
   }
