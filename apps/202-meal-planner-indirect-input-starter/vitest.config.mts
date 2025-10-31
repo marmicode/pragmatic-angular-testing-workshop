@@ -36,6 +36,8 @@ export default mergeConfig(
             include: browserTestPatterns,
             browser: {
               enabled: true,
+              /* TODO: hoist once this is merged https://github.com/vitest-dev/vitest/pull/8890 */
+              isolate: false,
               provider: playwright(),
               instances: [{ browser: 'chromium' }],
             },
