@@ -5,6 +5,7 @@ const files = {
   mealRepository: 'src/app/meal-planner/meal-repository.ts',
   recipeFilter: 'src/app/recipe/recipe-filter.ng.ts',
   recipeSearch: 'src/app/recipe/recipe-search.ng.ts',
+  recipeSearchIsolatedTest: 'src/app/recipe/recipe-search.ng.isolated.spec.ts',
 };
 
 const exercises: Exercise[] = [
@@ -77,7 +78,12 @@ const exercises: Exercise[] = [
   {
     id: '402-recipe-search-filter-interaction',
     name: '402 - Recipe Search & Filter Interaction',
-    implementationFiles: [files.recipeSearch],
+    implementationFiles: [
+      files.recipeSearch,
+      /* This is a shallow test exercise but we want to highlight the challenge of maintaining isolated tests.
+       * We want to keep the isolated test for reference without annoying the user with it. */
+      files.recipeSearchIsolatedTest,
+    ],
   },
   {
     id: '403-recipe-search-add-button',
