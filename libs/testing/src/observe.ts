@@ -1,6 +1,3 @@
-/// <reference types="vitest/globals" />
-/// <reference types="jest" />
-
 import type { Mock } from 'vitest';
 import { Observable, Unsubscribable } from 'rxjs';
 
@@ -64,4 +61,10 @@ function createSpy<PARAMS extends unknown[], RETURN>(): Mock<
   return typeof jest !== 'undefined'
     ? (jest.fn() as unknown as Mock<(...args: PARAMS) => RETURN>)
     : g.vi.fn();
+}
+
+declare global {
+  const jest: {
+    fn: () => Mock<(...args: unknown[]) => unknown>;
+  };
 }
