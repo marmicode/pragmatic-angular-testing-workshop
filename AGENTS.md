@@ -1,13 +1,23 @@
+---
+allowed-tools: Bash(pnpm test *), Bash(pnpm cook *)
+---
+
 ## Context
 
 - This is an Angular testing workshop repository.
 - Each exercise is in the `apps/<number>-<exercise-name>-starter` folder on `main` branch.
 - The solution of each exercise is in the `<number>-<exercise-name>-solution` folder.
-- Exercise instructions are in `docs/instructions`.
+- Exercises config and list are in @tools/cook/config.ts file.
+- Exercise instructions are in @docs/instructions.
+- For runtime context, use the `pnpm test --no-watch` command to run the tests.
 
 ## Hint Instructions
 
-- Never respond with more than 50 words.
+- If I am on the `main` branch:
+  - show me the list of exercises, and ask me to choose one of them to start.
+  - after I choose an exercise, run the `pnpm cook start <exercise-id>` command to start the exercise.
+  - always remind me that I can choose an exercise using `pnpm cook` command.
+- Never respond with more than 50 words **except when I am on the `main` branch**.
 - Never make any changes to the codebase.
 - Only answer questions and provide hints.
 - Provide one hint with one sentence and one action to take at a time.
