@@ -9,12 +9,22 @@ import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
   it('should search recipes without filtering', async () => {
-    const { getRecipeNames } = createComponent();
+    const { getRecipeNames } = await createComponent();
 
-    expect(await getRecipeNames()).toEqual(['Burger', 'Salad']);
+    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
-  function createComponent() {
+  it('should filter recipes by keywords', async () => {
+    const { getRecipeNames, updateFilter } = await createComponent();
+
+    await updateFilter({
+      keywords: 'Burg',
+    });
+
+    expect(getRecipeNames()).toEqual(['Burger']);
+  });
+
+  async function createComponent() {
     TestBed.configureTestingModule({
       providers: [RecipeSearch, provideRecipeRepositoryFake()],
     });
@@ -26,11 +36,15 @@ describe(RecipeSearch.name, () => {
 
     const component = TestBed.inject(RecipeSearch);
 
+    await whenAppStable();
+
     return {
-      component,
-      async getRecipeNames() {
-        await whenAppStable();
+      getRecipeNames() {
         return component.recipes.value()?.map((recipe) => recipe.name);
+      },
+      async updateFilter({ keywords }: { keywords: string }) {
+        component.filter.set({ keywords });
+        await whenAppStable();
       },
     };
   }

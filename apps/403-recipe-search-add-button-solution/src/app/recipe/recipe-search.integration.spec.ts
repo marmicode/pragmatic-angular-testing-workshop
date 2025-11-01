@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { recipeMother } from '../testing/recipe.mother';
 import {
   provideRecipeRepositoryFake,
@@ -11,6 +12,16 @@ describe(RecipeSearch.name, () => {
     const { getRecipeNames } = await renderComponent();
 
     expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
+  });
+
+  it('should filter recipes by keywords', async () => {
+    const { getRecipeNames, updateFilter } = await renderComponent();
+
+    await updateFilter({
+      keywords: 'Burg',
+    });
+
+    expect(getRecipeNames()).toEqual(['Burger']);
   });
 
   async function renderComponent() {
@@ -31,6 +42,10 @@ describe(RecipeSearch.name, () => {
     return {
       getRecipeNames() {
         return screen.queryAllByRole('heading').map((el) => el.textContent);
+      },
+      async updateFilter({ keywords }: { keywords: string }) {
+        await userEvent.type(screen.getByLabelText('Keywords'), keywords);
+        await fixture.whenStable();
       },
     };
   }
