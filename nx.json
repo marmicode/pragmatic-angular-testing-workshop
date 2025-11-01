@@ -5,9 +5,7 @@
     {
       "plugin": "@nx/js/typescript",
       "options": {
-        "typecheck": {
-          "targetName": "typecheck"
-        },
+        "typecheck": { "targetName": "typecheck" },
         "build": {
           "targetName": "build",
           "configName": "tsconfig.lib.json",
@@ -16,12 +14,7 @@
         }
       }
     },
-    {
-      "plugin": "@nx/jest/plugin",
-      "options": {
-        "targetName": "jest"
-      }
-    },
+    { "plugin": "@nx/jest/plugin", "options": { "targetName": "jest" } },
     "@nx/eslint/plugin",
     "@nx/playwright/plugin",
     "@nx/vite/plugin"
@@ -33,10 +26,7 @@
       "unitTestRunner": "vitest",
       "e2eTestRunner": "playwright"
     },
-    "@nx/angular:library": {
-      "linter": "eslint",
-      "unitTestRunner": "vitest"
-    },
+    "@nx/angular:library": { "linter": "eslint", "unitTestRunner": "vitest" },
     "@nx/angular:component": {
       "style": "css",
       "inlineStyle": true,
@@ -44,67 +34,27 @@
       "type": "component"
     },
     "@nx/angular": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      },
-      "directive": {
-        "type": "directive"
-      },
-      "service": {
-        "type": "service"
-      },
-      "scam": {
-        "type": "component"
-      },
-      "scam-directive": {
-        "type": "directive"
-      },
-      "guard": {
-        "typeSeparator": "."
-      },
-      "interceptor": {
-        "typeSeparator": "."
-      },
-      "module": {
-        "typeSeparator": "."
-      },
-      "pipe": {
-        "typeSeparator": "."
-      },
-      "resolver": {
-        "typeSeparator": "."
-      }
+      "application": { "linter": "eslint" },
+      "library": { "linter": "eslint" },
+      "storybook-configuration": { "linter": "eslint" },
+      "directive": { "type": "directive" },
+      "service": { "type": "service" },
+      "scam": { "type": "component" },
+      "scam-directive": { "type": "directive" },
+      "guard": { "typeSeparator": "." },
+      "interceptor": { "typeSeparator": "." },
+      "module": { "typeSeparator": "." },
+      "pipe": { "typeSeparator": "." },
+      "resolver": { "typeSeparator": "." }
     },
-    "@schematics/angular:component": {
-      "type": "component"
-    },
-    "@schematics/angular:directive": {
-      "type": "directive"
-    },
-    "@schematics/angular:service": {
-      "type": "service"
-    },
-    "@schematics/angular:guard": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:interceptor": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:module": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:pipe": {
-      "typeSeparator": "."
-    },
-    "@schematics/angular:resolver": {
-      "typeSeparator": "."
-    }
+    "@schematics/angular:component": { "type": "component" },
+    "@schematics/angular:directive": { "type": "directive" },
+    "@schematics/angular:service": { "type": "service" },
+    "@schematics/angular:guard": { "typeSeparator": "." },
+    "@schematics/angular:interceptor": { "typeSeparator": "." },
+    "@schematics/angular:module": { "typeSeparator": "." },
+    "@schematics/angular:pipe": { "typeSeparator": "." },
+    "@schematics/angular:resolver": { "typeSeparator": "." }
   },
   "targetDefaults": {
     "build": {
@@ -113,27 +63,14 @@
       "cache": true
     },
     "test-ui": {
-      "inputs": [
-        "default",
-        "^production",
-        {
-          "runtime": "env | grep PW"
-        }
-      ],
+      "inputs": ["default", "^production", { "runtime": "env | grep PW" }],
       "cache": true
     },
     "@nx/jest:jest": {
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
       "cache": true,
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
+      "options": { "passWithNoTests": true },
+      "configurations": { "ci": { "ci": true, "codeCoverage": true } }
     },
     "@nx/eslint:lint": {
       "inputs": [
@@ -157,5 +94,5 @@
       "!{projectRoot}/eslint.config.mjs"
     ]
   },
-  "nxCloudId": "68d46679bd4038601a660428"
+  "nxCloudId": "690640bab43dd482385f6d97"
 }
