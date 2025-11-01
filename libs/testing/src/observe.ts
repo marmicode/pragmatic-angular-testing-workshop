@@ -1,6 +1,7 @@
-/// <reference types="jest" />
 /// <reference types="vitest/globals" />
+/// <reference types="jest" />
 
+import type { Mock } from 'vitest';
 import { Observable, Unsubscribable } from 'rxjs';
 
 export function observe<T>(observable: Subscribable<T>) {
@@ -56,10 +57,11 @@ type Subscribable<T> =
 /* Using jest.Mock as a return type instead of MockedFunction
  * because vitest implements [Symbol.dispose] but not jest.
  * We downgrade to Jest API. */
-function createSpy<PARAMS extends unknown[], RETURN>(): jest.Mock<
+function createSpy<PARAMS extends unknown[], RETURN>(): Mock<
   (...args: PARAMS) => RETURN
 > {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const global = globalThis as any;
-  return typeof jest !== 'undefined' ? jest.fn() : global.vi.fn();
+  const g = globalThis as unknown as { vi: typeof vi };
+  return typeof jest !== 'undefined'
+    ? (jest.fn() as unknown as Mock<(...args: PARAMS) => RETURN>)
+    : g.vi.fn();
 }
