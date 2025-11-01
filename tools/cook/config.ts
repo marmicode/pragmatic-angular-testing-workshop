@@ -5,7 +5,7 @@ const files = {
   mealRepository: 'src/app/meal-planner/meal-repository.ts',
   recipeFilter: 'src/app/recipe/recipe-filter.ng.ts',
   recipeSearch: 'src/app/recipe/recipe-search.ng.ts',
-  recipeSearchIsolatedTest: 'src/app/recipe/recipe-search.ng.isolated.spec.ts',
+  recipeSearchIsolatedTest: 'src/app/recipe/recipe-search.isolated.spec.ts',
 };
 
 const exercises: Exercise[] = [
