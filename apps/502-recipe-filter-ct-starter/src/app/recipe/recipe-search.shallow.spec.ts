@@ -38,7 +38,7 @@ describe(RecipeSearch.name, () => {
     const { getFirstAddButton, getMealPlannerRecipeNames } =
       await renderComponent();
 
-    await getFirstAddButton().click();
+    await userEvent.click(getFirstAddButton());
 
     expect(await getMealPlannerRecipeNames()).toEqual(['Burger']);
   });
@@ -48,7 +48,7 @@ describe(RecipeSearch.name, () => {
       await renderComponentWithBurgerInMealPlanner();
 
     /* Can't add burger because there is already a burger with the same id. */
-    expect(getFirstAddButton().isDisabled()).toBe(true);
+    expect(getFirstAddButton()).toBeDisabled();
   });
 
   async function renderComponentWithBurgerInMealPlanner() {
@@ -88,13 +88,9 @@ describe(RecipeSearch.name, () => {
     return {
       mealPlanner,
       getFirstAddButton() {
-        const addButtonEl = screen.getAllByRole<HTMLButtonElement>('button', {
+        return screen.getAllByRole<HTMLButtonElement>('button', {
           name: 'ADD',
         })[0];
-        return {
-          click: () => userEvent.click(addButtonEl),
-          isDisabled: () => addButtonEl.disabled,
-        };
       },
       async getMealPlannerRecipeNames() {
         const recipes = await firstValueFrom(mealPlanner.recipes$);
