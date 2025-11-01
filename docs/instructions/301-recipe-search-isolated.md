@@ -48,7 +48,7 @@ You can try the same exercise with both:
 pnpm test
 ```
 
-#### 2. Open `src/app/recipe/recipe-search.ng.isolated.spec.ts`.
+#### 2. Open `src/app/recipe/recipe-search.isolated.spec.ts`.
 
 #### 3.a. Configure the `TestBed` with real server:
 

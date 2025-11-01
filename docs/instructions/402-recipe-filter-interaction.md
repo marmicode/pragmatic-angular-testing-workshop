@@ -33,7 +33,7 @@ We will test the contract using a shallow test.
 pnpm test
 ```
 
-#### 2. Open `src/app/recipe/recipe-search.ng.shallow.spec.ts`.
+#### 2. Open `src/app/recipe/recipe-search.shallow.spec.ts`.
 
 #### 3. Add a new test: `it('should search recipes using given filter', ...)`.
 

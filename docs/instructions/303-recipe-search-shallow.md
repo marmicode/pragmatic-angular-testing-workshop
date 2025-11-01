@@ -39,7 +39,7 @@ But let's check children properties this time.
 pnpm test
 ```
 
-#### 2. Open `src/app/recipe/recipe-search.ng.shallow.spec.ts`.
+#### 2. Open `src/app/recipe/recipe-search.shallow.spec.ts`.
 
 #### 3. Override component's imports & schema:
 

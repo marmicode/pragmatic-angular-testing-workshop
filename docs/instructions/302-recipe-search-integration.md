@@ -43,7 +43,7 @@ But let's check the DOM this time.
 pnpm test
 ```
 
-#### 2. Open `src/app/recipe/recipe-search.ng.integration.spec.ts`.
+#### 2. Open `src/app/recipe/recipe-search.integration.spec.ts`.
 
 #### 3.a. Configure the `TestBed` with real server:
 

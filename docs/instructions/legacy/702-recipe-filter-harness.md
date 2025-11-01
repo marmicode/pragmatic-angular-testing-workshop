@@ -8,7 +8,7 @@ git checkout origin/testing-701-recipe-filter-material-harness
 
 Create a harness that abstracts interactions with `RecipeFilterComponent`.
 
-Update `src/app/recipe/recipe-filter.component.spec.ts` in order to use the `RecipeFilterHarness`.
+Update `src/app/recipe/recipe-filter.spec.ts` in order to use the `RecipeFilterHarness`.
 
 ### 📝 Steps
 
@@ -20,7 +20,7 @@ pnpm test
 
 2. Create harness:
 
-   1. Create `RecipeFilterHarness` in `src/app/recipe/recipe-filter.component.spec.ts`.
+   1. Create `RecipeFilterHarness` in `src/app/recipe/recipe-filter.spec.ts`.
 
    2. Extend `ComponentHarness`.
 
@@ -32,7 +32,7 @@ pnpm test
 
 3. Update test:
 
-   1. Open `recipe-filter.component.spec.ts`.
+   1. Open `recipe-filter.spec.ts`.
 
    2. It's different this time, we get the harness directly without the loader indirection.
       The tested component is injected dynamically by `TestBed` and doesn't have the right selector.
