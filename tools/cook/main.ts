@@ -8,13 +8,19 @@ import {
   GitAdapter,
   PromptAdapter,
 } from './infra.ts';
+import { type Public } from './util.ts';
 
 const STARTER_SUFFIX = '-starter';
 const SOLUTION_SUFFIX = '-solution';
 const COOKING_BRANCH = 'cooking';
 
 export async function main(args: string[], ctx: Context) {
-  const command = await prepareCommand(args, ctx);
+  const parsedArgs = parseArgs(args);
+  if (parsedArgs.nonInteractive) {
+    ctx.promptAdapter.disableInteractivity();
+  }
+
+  const command = await prepareCommand(parsedArgs, ctx);
 
   switch (command.type) {
     case 'start':
@@ -30,12 +36,17 @@ export async function main(args: string[], ctx: Context) {
       await stopCooking(ctx);
       break;
     default:
-      console.error('Invalid choice');
-      process.exit(1);
+      bail('Invalid choice');
   }
 }
 
-type CommandType = 'start' | 'checkout-impl' | 'solution' | 'stop';
+const COMMAND_TYPES = ['start', 'checkout-impl', 'solution', 'stop'] as const;
+
+type CommandType = (typeof COMMAND_TYPES)[number];
+
+function isCommandType(arg: string | undefined): arg is CommandType {
+  return COMMAND_TYPES.includes(arg as CommandType);
+}
 
 type Command =
   | {
@@ -52,21 +63,24 @@ type Command =
 
 interface Context {
   config: Config;
-  commandRunner: CommandRunner;
-  fileSystemAdapter: FileSystemAdapter;
-  gitAdapter: GitAdapter;
-  promptAdapter: PromptAdapter;
+  commandRunner: Public<CommandRunner>;
+  fileSystemAdapter: Public<FileSystemAdapter>;
+  gitAdapter: Public<GitAdapter>;
+  promptAdapter: Public<PromptAdapter>;
 }
 
-async function prepareCommand(args: string[], ctx: Context): Promise<Command> {
+async function prepareCommand(
+  parsedArgs: ParsedArgs,
+  ctx: Context,
+): Promise<Command> {
   const { promptAdapter } = ctx;
   const exercise = maybeGetCurrentExercise(ctx);
 
-  if (args.length > 0) {
-    const command = args[0];
+  const { command, commandArgs } = parsedArgs;
+  if (command != null) {
     switch (command) {
       case 'start':
-        return { type: 'start', exerciseId: args[1] };
+        return { type: 'start', exerciseId: commandArgs[0] };
       case 'checkout-impl':
         assertExerciseSelected('checkout-impl', exercise);
         return { type: 'checkout-impl', exercise };
@@ -76,12 +90,13 @@ async function prepareCommand(args: string[], ctx: Context): Promise<Command> {
       case 'stop':
         return { type: 'stop' };
       default:
-        console.error(`Invalid command: ${command}`);
-        console.log(`Usage:
-  cook start [exercise]
-  cook checkout-impl|solution
+        bail(`Invalid command: ${command}
+ Usage:
+  cook [options] start [exercise]
+  cook [options] checkout-impl|solution
+Options:
+  -y             Non-interactive mode
 `);
-        process.exit(1);
     }
   }
 
@@ -117,7 +132,41 @@ async function prepareCommand(args: string[], ctx: Context): Promise<Command> {
     ] satisfies Array<{ name: CommandType; message: string }>,
   });
 
+  if (choice == null) {
+    bail('No command chosen');
+  }
+
   return { type: choice.command, exercise };
+}
+
+interface ParsedArgs {
+  command?: CommandType;
+  nonInteractive: boolean;
+  commandArgs: string[];
+}
+
+function parseArgs(args: string[]): ParsedArgs {
+  const parsedArgs: ParsedArgs = {
+    nonInteractive: false,
+    commandArgs: [],
+  };
+  while (args.length > 0) {
+    const arg = args.shift();
+    if (arg === '-y') {
+      parsedArgs.nonInteractive = true;
+      continue;
+    }
+    if (isCommandType(arg)) {
+      parsedArgs.command = arg;
+      parsedArgs.commandArgs = args;
+      args = [];
+      continue;
+    }
+
+    bail(`Invalid argument: ${arg}`);
+  }
+
+  return parsedArgs;
 }
 
 function assertExerciseSelected(
@@ -125,9 +174,13 @@ function assertExerciseSelected(
   exercise: Exercise | null,
 ): asserts exercise is Exercise {
   if (exercise === null) {
-    console.error(`${commandType} requires an exercise to be selected`);
-    process.exit(1);
+    bail(`${commandType} requires an exercise to be selected`);
   }
+}
+
+function bail(message: string): never {
+  console.error(message);
+  process.exit(1);
 }
 
 async function checkoutSolution(ctx: Context, exercise: Exercise) {
@@ -150,6 +203,11 @@ async function goToExercise(ctx: Context, exerciseId?: string) {
         message: exercise.name,
       })),
     });
+
+    if (exerciseChoice == null) {
+      bail('No exercise chosen');
+    }
+
     exerciseId = exerciseChoice.exercise;
   }
 
@@ -157,8 +215,7 @@ async function goToExercise(ctx: Context, exerciseId?: string) {
     (exercise) => exercise.id === exerciseId,
   );
   if (!selectedExercise) {
-    console.error('Selected exercise not found');
-    process.exit(1);
+    bail(`Selected exercise not found: ${exerciseId}`);
   }
 
   let tdd = true;
@@ -294,8 +351,7 @@ async function maybeWipeout(ctx: Context) {
   });
 
   if (!confirmOverwrite) {
-    console.log('Operation cancelled.');
-    process.exit(0);
+    bail('Operation cancelled');
   }
 
   console.log('Resetting to clean state...');
@@ -327,6 +383,9 @@ if (process.argv[1] === __filename) {
 }
 
 process.on('uncaughtException', (error) => {
+  /**
+   * This happens when user interrupts the process (e.g. Ctrl+C).
+   */
   if (
     error instanceof Error &&
     'code' in error &&

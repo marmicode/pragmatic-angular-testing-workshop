@@ -1,4 +1,3 @@
-import enquirer from 'enquirer';
 import { describe, expect, it } from 'vitest';
 import { main } from './main';
 import {
@@ -8,6 +7,7 @@ import {
   PromptAdapter,
 } from './infra';
 import { Exercise } from './core';
+import { type Public } from './util';
 
 describe('cook', () => {
   it('does not checkout the implementation if TDD is enabled', async () => {
@@ -23,7 +23,7 @@ describe('cook', () => {
     });
 
     expect(executedCommands).toEqual([
-      'git switch angular-vitest-mini-workshop',
+      'git switch main',
       'git branch -D cooking || exit 0',
       'git switch -c cooking',
       'git add .',
@@ -48,10 +48,10 @@ describe('cook', () => {
     });
 
     expect(executedCommands).toEqual([
-      'git switch angular-vitest-mini-workshop',
+      'git switch main',
       'git branch -D cooking || exit 0',
       'git switch -c cooking',
-      'git show angular-vitest-mini-workshop:apps/1-recipe-search-solution/src/app/recipe/recipe-search.ng.ts > apps/1-recipe-search-starter/src/app/recipe/recipe-search.ng.ts',
+      'git show main:apps/1-recipe-search-solution/src/app/recipe/recipe-search.ng.ts > apps/1-recipe-search-starter/src/app/recipe/recipe-search.ng.ts',
       'git add .',
       'git commit -m "feat: ✨ focus on 1-recipe-search-starter"',
     ]);
@@ -66,7 +66,7 @@ describe('cook', () => {
     });
 
     expect(executedCommands).toEqual([
-      'git switch angular-vitest-mini-workshop',
+      'git switch main',
       'git branch -D cooking || exit 0',
       'git switch -c cooking',
       'git add .',
@@ -88,18 +88,41 @@ describe('cook', () => {
     expect(executedCommands).toEqual([
       'git reset --hard',
       'git clean -df',
-      'git switch angular-vitest-mini-workshop',
+      'git switch main',
+    ]);
+  });
+
+  it('does not prompt if `-y` is passed', async () => {
+    const { executedCommands } = await runMain({
+      args: ['-y', 'start', '1-recipe-search'],
+      /* These choices should be ignored (as not prompted) because we are in non-interactive mode (-y). */
+      choices: { useTdd: true },
+      nxJsonContent: {
+        defaultProject: '1-recipe-search-starter',
+      },
+    });
+
+    expect(executedCommands).toEqual([
+      'git switch main',
+      'git branch -D cooking || exit 0',
+      'git switch -c cooking',
+      /* `useTdd` is using its default value (false) because we are in non-interactive mode (-y). */
+      'git show main:apps/1-recipe-search-solution/src/app/recipe/recipe-search.ng.ts > apps/1-recipe-search-starter/src/app/recipe/recipe-search.ng.ts',
+      'git add .',
+      'git commit -m "feat: ✨ focus on 1-recipe-search-starter"',
     ]);
   });
 });
 
 async function runMain({
-  choices,
+  args = [],
+  choices = {},
   hasLocalChanges = false,
   nxJsonContent,
   files = {},
 }: {
-  choices: Record<string, unknown>;
+  args?: string[];
+  choices?: Record<string, unknown>;
   nxJsonContent: { defaultProject?: string };
   hasLocalChanges?: boolean;
   files?: Record<string, string>;
@@ -129,9 +152,9 @@ async function runMain({
     { id: '2-test-double', name: 'Test Double' },
   ];
 
-  await main([], {
+  await main(args, {
     config: {
-      base: 'angular-vitest-mini-workshop',
+      base: 'main',
       exercises,
     },
     commandRunner,
@@ -233,17 +256,23 @@ class FileSystemFake implements FileSystemAdapter {
   }
 }
 
-class PromptFake implements PromptAdapter {
+class PromptFake implements Public<PromptAdapter> {
   private _choices: Record<string, unknown> = {};
+  private _interactive = true;
 
   configure({ choices }: { choices: Record<string, unknown> }) {
     this._choices = choices;
   }
 
-  prompt<T>(
-    ...args: Parameters<typeof enquirer.prompt<T>>
-  ): ReturnType<typeof enquirer.prompt<T>> {
-    const options = args[0] as { name: string; initial?: unknown };
+  disableInteractivity() {
+    this._interactive = false;
+  }
+
+  prompt<T>(options) {
+    const { name, initial } = options;
+    if (!this._interactive) {
+      return initial !== undefined ? ({ [name]: initial } as T) : null;
+    }
     return Promise.resolve({
       [options.name]: this._choices[options.name] ?? options.initial,
     } as T);

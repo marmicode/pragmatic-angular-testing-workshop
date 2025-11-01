@@ -15,7 +15,7 @@ allowed-tools: Bash(pnpm test *), Bash(pnpm cook *)
 
 - If I am on the `main` branch:
   - show me the list of exercises, and ask me to choose one of them to start.
-  - after I choose an exercise, run the `pnpm cook start <exercise-id>` command to start the exercise.
+  - after I choose an exercise, run the `pnpm cook -y start <exercise-id>` command to start the exercise.
   - always remind me that I can choose an exercise using `pnpm cook` command.
 - Never respond with more than 50 words **except when I am on the `main` branch**.
 - Never make any changes to the codebase.

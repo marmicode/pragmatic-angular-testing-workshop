@@ -55,9 +55,41 @@ export class GitAdapter {
 }
 
 export class PromptAdapter {
-  prompt<T>(
-    ...args: Parameters<typeof prompt<T>>
-  ): ReturnType<typeof prompt<T>> {
-    return prompt(...args);
+  private _interactive = true;
+
+  disableInteractivity() {
+    this._interactive = false;
+  }
+
+  /**
+   * @returns The result of the prompt, or null if the prompt was not interactive and no initial value was provided.
+   */
+  async prompt<T>(
+    options: PromptOptions<T> & { initial: T[keyof T] },
+  ): Promise<T>;
+  async prompt<T>(options: PromptOptions<T>): Promise<T | null>;
+  async prompt<T>(options: PromptOptions<T>): Promise<T | null> {
+    const { name, initial } = options;
+
+    if (!this._interactive) {
+      if (initial === undefined) {
+        throw new Error(
+          'Initial value is required when interactivity is disabled',
+        );
+      }
+
+      return initial !== undefined
+        ? ({
+            [name as keyof T]: initial,
+          } as T)
+        : null;
+    }
+
+    return await prompt(options);
   }
 }
+
+type PromptOptions<T> = Exclude<
+  Parameters<typeof prompt<T>>[0],
+  ((...args: unknown[]) => unknown) | unknown[]
+>;
