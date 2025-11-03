@@ -20,6 +20,11 @@ export default mergeConfig(
       watch: false,
       pool: 'threads',
       isolate: false,
+      /**
+       * @todo remove `maxWorkers` once no-isolate parallelism is supported.
+       * @see https://github.com/vitest-dev/vitest/issues/8478#issuecomment-3421518590
+       */
+      maxWorkers: 1,
       projects: [
         {
           extends: true,
@@ -37,7 +42,10 @@ export default mergeConfig(
             include: browserTestPatterns,
             browser: {
               enabled: true,
-              /* TODO: hoist once this is merged https://github.com/vitest-dev/vitest/pull/8890 */
+              /**
+               * @todo hoist once browser.isolate and isolate are merged
+               * @see https://github.com/vitest-dev/vitest/pull/8890
+               */
               isolate: false,
               provider: playwright(),
               instances: [{ browser: 'chromium' }],
