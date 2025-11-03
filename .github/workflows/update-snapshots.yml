@@ -16,11 +16,12 @@ jobs:
       - name: Playwright browsers install
         run: pnpm playwright install --with-deps
 
-      - run: pnpm nx run-many --parallel=4 -t test-ui --update-snapshots
+      - run: pnpm nx run-many --parallel=1 -t testronaut --update-snapshots
 
       - run: |
           git config --global user.email "bot@marmicode.io"
           git config --global user.name "Marmicode Bot"
+          git add .
           git diff --cached --quiet || git commit -a -m "test: ✅ update snapshots"
           git push
 

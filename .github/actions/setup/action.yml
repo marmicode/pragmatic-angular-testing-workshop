@@ -7,9 +7,7 @@ runs:
   steps:
     - uses: nrwl/nx-set-shas@v3
       with:
-        main-branch-name: ${{ github.ref_name }}
-        # Fallback to the previous commit in case we force push the main branch.
-        fallback-sha: HEAD~1
+        main-branch-name: main
 
     - uses: pnpm/action-setup@v2
       with:

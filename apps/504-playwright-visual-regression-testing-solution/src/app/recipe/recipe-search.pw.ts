@@ -1,24 +1,76 @@
-import { expect, test } from '@jscutlery/playwright-ct-angular';
+import { TestBed } from '@angular/core/testing';
+import { test as base, expect } from '@testronaut/angular';
+import { firstValueFrom } from 'rxjs';
+import { MealPlanner } from '../meal-planner/meal-planner';
 import { recipeMother } from '../testing/recipe.mother';
 import { Recipe } from './recipe';
-import { RecipeSearchTestContainer } from './recipe-search.test-container.ng';
+import {
+  provideRecipeRepositoryFake,
+  RecipeRepositoryFake,
+} from './recipe-repository.fake';
+import { RecipeSearch } from './recipe-search.ng';
+
+interface MountRecipeSearch {
+  getMealPlannerRecipes: () => Promise<Recipe[]>;
+  addRecipeToMealPlanner: (recipe: Recipe) => Promise<void>;
+}
+
+const test = base.extend<{
+  mountRecipeSearch: () => Promise<MountRecipeSearch>;
+}>({
+  mountRecipeSearch: async ({ mount, runInBrowser }, use) => {
+    const _mountRecipeSearch = async () => {
+      await runInBrowser('configure', () => {
+        TestBed.configureTestingModule({
+          providers: [provideRecipeRepositoryFake()],
+        });
+
+        TestBed.inject(RecipeRepositoryFake).setRecipes([
+          recipeMother.withBasicInfo('Burger').build(),
+          recipeMother.withBasicInfo('Salad').build(),
+        ]);
+      });
+
+      await mount(RecipeSearch);
+
+      return {
+        getMealPlannerRecipes: () =>
+          runInBrowser('get MealPlanner recipes', () => {
+            const mealPlanner = TestBed.inject(MealPlanner);
+            return firstValueFrom(mealPlanner.recipes$);
+          }),
+        addRecipeToMealPlanner: (recipe: Recipe) =>
+          runInBrowser(
+            'add Recipe to MealPlanner',
+            { recipe },
+            ({ recipe }) => {
+              const mealPlanner = TestBed.inject(MealPlanner);
+              return mealPlanner.addRecipe(recipe);
+            },
+          ),
+      };
+    };
+
+    await use(_mountRecipeSearch);
+  },
+});
 
 test.describe('RecipeSearch', () => {
-  test('should show recipes', async ({ page, mount }) => {
-    await mount(RecipeSearchTestContainer);
+  test('should show recipes', async ({ page, mountRecipeSearch }) => {
+    await mountRecipeSearch();
 
     await expect(page.getByRole('heading', { level: 2 })).toHaveText([
       'Burger',
       'Salad',
     ]);
 
-    await expect(page).toHaveScreenshot({
+    await expect.soft(page).toHaveScreenshot({
       mask: [page.getByRole('img')],
     });
   });
 
-  test('should filter recipes', async ({ page, mount }) => {
-    await mount(RecipeSearchTestContainer);
+  test('should filter recipes', async ({ page, mountRecipeSearch }) => {
+    await mountRecipeSearch();
 
     await page.getByLabel('Keywords').fill('Bur');
 
@@ -27,31 +79,27 @@ test.describe('RecipeSearch', () => {
     ]);
   });
 
-  test('should add recipe to meal plan', async ({ page, mount }) => {
-    let recipes: Recipe[] | undefined;
-    await mount(RecipeSearchTestContainer, {
-      on: {
-        mealPlannerRecipesChange(_recipes: Recipe[]) {
-          recipes = _recipes;
-        },
-      },
-    });
+  test('should add recipe to meal plan', async ({
+    page,
+    mountRecipeSearch,
+  }) => {
+    const { getMealPlannerRecipes } = await mountRecipeSearch();
 
     await page.getByRole('button', { name: 'ADD' }).first().click();
 
     /* There is only a burger in the meal planner. */
-    expect(recipes).toContainEqual(expect.objectContaining({ name: 'Burger' }));
+    await expect
+      .poll(() => getMealPlannerRecipes())
+      .toContainEqual(expect.objectContaining({ name: 'Burger' }));
   });
 
   test('should disable add button if recipe is already in meal plan', async ({
     page,
-    mount,
+    mountRecipeSearch,
   }) => {
-    await mount(RecipeSearchTestContainer, {
-      props: {
-        mealPlannerRecipes: [recipeMother.withBasicInfo('Burger').build()],
-      },
-    });
+    const { addRecipeToMealPlanner } = await mountRecipeSearch();
+
+    await addRecipeToMealPlanner(recipeMother.withBasicInfo('Burger').build());
 
     await expect(
       page.getByRole('button', { name: 'ADD' }).first(),
