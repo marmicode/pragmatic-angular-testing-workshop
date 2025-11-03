@@ -8,9 +8,11 @@ import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
   it('should search recipes without filtering', async () => {
-    const { getRecipeNames } = await renderComponent();
+    const { getRecipeNameEls } = await renderComponent();
 
-    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
+    expect(getRecipeNameEls()).toHaveLength(2);
+    expect(getRecipeNameEls()[0]).toHaveTextContent('Burger');
+    expect(getRecipeNameEls()[1]).toHaveTextContent('Salad');
   });
 
   async function renderComponent() {
@@ -29,8 +31,8 @@ describe(RecipeSearch.name, () => {
     await fixture.whenStable();
 
     return {
-      getRecipeNames() {
-        return screen.queryAllByRole('heading').map((el) => el.textContent);
+      getRecipeNameEls() {
+        return screen.queryAllByRole('heading');
       },
     };
   }

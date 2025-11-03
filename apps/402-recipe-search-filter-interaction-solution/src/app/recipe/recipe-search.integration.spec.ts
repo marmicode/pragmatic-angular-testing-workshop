@@ -9,19 +9,22 @@ import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
   it('should search recipes without filtering', async () => {
-    const { getRecipeNames } = await renderComponent();
+    const { getRecipeNameEls } = await renderComponent();
 
-    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
+    expect(getRecipeNameEls()).toHaveLength(2);
+    expect(getRecipeNameEls()[0]).toHaveTextContent('Burger');
+    expect(getRecipeNameEls()[1]).toHaveTextContent('Salad');
   });
 
   it('should filter recipes by keywords', async () => {
-    const { getRecipeNames, updateFilter } = await renderComponent();
+    const { getRecipeNameEls, updateFilter } = await renderComponent();
 
     await updateFilter({
       keywords: 'Burg',
     });
 
-    expect(getRecipeNames()).toEqual(['Burger']);
+    expect(getRecipeNameEls()).toHaveLength(1);
+    expect(getRecipeNameEls()[0]).toHaveTextContent('Burger');
   });
 
   async function renderComponent() {
@@ -40,8 +43,8 @@ describe(RecipeSearch.name, () => {
     await fixture.whenStable();
 
     return {
-      getRecipeNames() {
-        return screen.queryAllByRole('heading').map((el) => el.textContent);
+      getRecipeNameEls() {
+        return screen.queryAllByRole('heading');
       },
       async updateFilter({ keywords }: { keywords: string }) {
         await userEvent.type(screen.getByLabelText('Keywords'), keywords);

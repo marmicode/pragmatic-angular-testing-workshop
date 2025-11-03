@@ -7,8 +7,11 @@ if [ "$#" -ne 2 ]; then
   exit 1
 fi
 
-SOURCE="$1"
-DESTINATION="$2"
+# Remove "apps/" from the source and destination
+# as we want to allow passing the full path to the app.
+SOURCE="${1#apps/}"
+DESTINATION="${2#apps/}"
+
 PATCH_FILE="tmp/changes.diff"
 
 mkdir -p tmp
