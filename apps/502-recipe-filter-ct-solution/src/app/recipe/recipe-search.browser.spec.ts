@@ -16,6 +16,16 @@ describe(RecipeSearch.name, () => {
     await expect.element(getRecipeNameEls().nth(1)).toHaveTextContent('Salad');
   });
 
+  it('filters recipes by keywords', async () => {
+    const { getRecipeNameEls, updateFilter } = await mountRecipeSearch();
+
+    await updateFilter({
+      keywords: 'Burg',
+    });
+
+    await expect.element(getRecipeNameEls()).toHaveTextContent('Burger');
+  });
+
   async function mountRecipeSearch() {
     TestBed.configureTestingModule({
       providers: [provideRecipeRepositoryFake()],
@@ -31,6 +41,9 @@ describe(RecipeSearch.name, () => {
     return {
       getRecipeNameEls() {
         return page.getByRole('heading');
+      },
+      async updateFilter({ keywords }: { keywords: string }) {
+        await page.getByLabelText('Keywords').fill(keywords);
       },
     };
   }
