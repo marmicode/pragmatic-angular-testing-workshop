@@ -22,7 +22,7 @@ describe(RecipeSearch.name, () => {
 
     TestBed.overrideComponent(RecipeSearch, {
       set: {
-        imports: [],
+        imports: [AsyncPipe],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       },
     });
