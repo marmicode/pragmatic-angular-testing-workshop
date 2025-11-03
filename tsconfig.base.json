@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@whiskmate/testing/create-spy": ["libs/testing/src/create-spy.ts"],
       "@whiskmate/testing/observe": ["libs/testing/src/observe.ts"],
       "@whiskmate/testing/set-up-test-bed": [
         "libs/testing/src/set-up-test-bed.ts"

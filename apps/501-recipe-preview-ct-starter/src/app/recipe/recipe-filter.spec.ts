@@ -1,6 +1,7 @@
 import { outputBinding } from '@angular/core';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
+import { createSpy } from '@whiskmate/testing/create-spy';
 import { RecipeFilterCriteria } from './recipe-filter-criteria';
 import { RecipeFilter } from './recipe-filter.ng';
 
@@ -20,7 +21,7 @@ describe(RecipeFilter.name, () => {
   });
 
   async function mountRecipeFilter() {
-    const filterChangeSpy = vi.fn();
+    const filterChangeSpy = createSpy();
 
     await render(RecipeFilter, {
       bindings: [outputBinding('filterChange', filterChangeSpy)],

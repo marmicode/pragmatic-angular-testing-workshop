@@ -1,5 +1,5 @@
-import type { Mock } from 'vitest';
 import { Observable, Unsubscribable } from 'rxjs';
+import { createSpy } from './create-spy';
 
 export function observe<T>(observable: Subscribable<T>) {
   const next = createSpy<[T], void>();
@@ -50,21 +50,3 @@ export function observe<T>(observable: Subscribable<T>) {
 type Subscribable<T> =
   | Observable<T>
   | { subscribe(fn: (v: T) => void): Unsubscribable };
-
-/* Using jest.Mock as a return type instead of MockedFunction
- * because vitest implements [Symbol.dispose] but not jest.
- * We downgrade to Jest API. */
-function createSpy<PARAMS extends unknown[], RETURN>(): Mock<
-  (...args: PARAMS) => RETURN
-> {
-  const g = globalThis as unknown as { vi: typeof vi };
-  return typeof jest !== 'undefined'
-    ? (jest.fn() as unknown as Mock<(...args: PARAMS) => RETURN>)
-    : g.vi.fn();
-}
-
-declare global {
-  const jest: {
-    fn: () => Mock<(...args: unknown[]) => unknown>;
-  };
-}
