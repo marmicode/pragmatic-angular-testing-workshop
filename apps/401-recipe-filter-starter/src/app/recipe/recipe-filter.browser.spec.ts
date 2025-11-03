@@ -1,6 +1,7 @@
 import { outputBinding } from '@angular/core';
-import { render, screen } from '@testing-library/angular';
+import { TestBed } from '@angular/core/testing';
 import userEvent from '@testing-library/user-event';
+import { page } from 'vitest/browser';
 import { RecipeFilter } from './recipe-filter.ng';
 
 describe(RecipeFilter.name, () => {
@@ -9,7 +10,7 @@ describe(RecipeFilter.name, () => {
   async function mountRecipeFilter() {
     const filterChangeSpy = vi.fn();
 
-    await render(RecipeFilter, {
+    TestBed.createComponent(RecipeFilter, {
       bindings: [
         // TODO: add output bindings here
       ],
@@ -21,8 +22,7 @@ describe(RecipeFilter.name, () => {
         label: 'Keywords' | 'Max Ingredients' | 'Max Steps',
         value: string,
       ) {
-        const inputEl = screen.getByLabelText(label);
-        await userEvent.type(inputEl, value);
+        await page.getByLabelText(label).fill(value);
       },
     };
   }

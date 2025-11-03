@@ -160,14 +160,14 @@ importers:
         specifier: 0.2.39
         version: 0.2.39(@swc/core@1.10.18(@swc/helpers@0.5.17))
       '@testing-library/angular':
-        specifier: 18.0.0
-        version: 18.0.0(027ae66b94837296617235475b2d4cc8)
+        specifier: 18.1.0
+        version: 18.1.0(027ae66b94837296617235475b2d4cc8)
       '@testing-library/dom':
         specifier: 10.4.1
         version: 10.4.1
       '@testing-library/jest-dom':
-        specifier: 6.8.0
-        version: 6.8.0
+        specifier: 6.9.1
+        version: 6.9.1
       '@testing-library/user-event':
         specifier: 14.6.1
         version: 14.6.1(@testing-library/dom@10.4.1)
@@ -5012,8 +5012,8 @@ packages:
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
     engines: {node: '>=14.16'}
 
-  '@testing-library/angular@18.0.0':
-    resolution: {integrity: sha512-0seNMa4ql2I3VD7CtnI9i4sFgxEgRES+EtGid8H4MTuOK/dlj457mVk8tWdFjPQPC/cPromcUNw0is1ogO3DSA==}
+  '@testing-library/angular@18.1.0':
+    resolution: {integrity: sha512-m9HK+XWqI3Ch/Bw5y4Ql/6oVTtPHo+qS22nd/XvHnxPbFyn+TvhMOSmpCrwNUFVmFzgA9VilbepbvKeLhEe45w==}
     peerDependencies:
       '@angular/common': '>= 20.0.0'
       '@angular/core': '>= 20.0.0'
@@ -5025,8 +5025,8 @@ packages:
     resolution: {integrity: sha512-o4PXJQidqJl82ckFaXUeoAW+XysPLauYI43Abki5hABd853iMhitooc6znOnczgbTYmEP6U6/y1ZyKAIsvMKGg==}
     engines: {node: '>=18'}
 
-  '@testing-library/jest-dom@6.8.0':
-    resolution: {integrity: sha512-WgXcWzVM6idy5JaftTVC8Vs83NKRmGJz4Hqs4oyOuO2J4r/y79vvKZsb+CaGyCSEbUPI6OsewfPd0G1A0/TUZQ==}
+  '@testing-library/jest-dom@6.9.1':
+    resolution: {integrity: sha512-zIcONa+hVtVSSep9UT3jZ5rizo2BsxgyDYU7WFD5eICBE7no3881HGeb/QkGfsJs6JTkY1aQhT7rIPC7e+0nnA==}
     engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
 
   '@testing-library/user-event@14.6.1':
@@ -19399,7 +19399,7 @@ snapshots:
     dependencies:
       defer-to-connect: 2.0.1
 
-  '@testing-library/angular@18.0.0(027ae66b94837296617235475b2d4cc8)':
+  '@testing-library/angular@18.1.0(027ae66b94837296617235475b2d4cc8)':
     dependencies:
       '@angular/common': 20.2.4(@angular/core@20.2.4(@angular/compiler@20.2.4)(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
       '@angular/core': 20.2.4(@angular/compiler@20.2.4)(rxjs@7.8.1)(zone.js@0.15.0)
@@ -19419,7 +19419,7 @@ snapshots:
       picocolors: 1.1.1
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@6.8.0':
+  '@testing-library/jest-dom@6.9.1':
     dependencies:
       '@adobe/css-tools': 4.4.4
       aria-query: 5.3.2
