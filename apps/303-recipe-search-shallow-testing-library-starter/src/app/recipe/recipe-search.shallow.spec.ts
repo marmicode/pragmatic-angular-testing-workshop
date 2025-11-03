@@ -1,6 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
+import { render, screen } from '@testing-library/angular';
 import { recipeMother } from '../testing/recipe.mother';
 import {
   provideRecipeRepositoryFake,
@@ -9,37 +8,25 @@ import {
 import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
-  it('searches recipes without filtering', async () => {
-    const { getRecipeNames } = await mountRecipeSearch();
-
-    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
-  });
+  it.todo('🚧 searches recipes without filtering');
 
   async function mountRecipeSearch() {
-    TestBed.configureTestingModule({
+    const { fixture } = await render(RecipeSearch, {
       providers: [provideRecipeRepositoryFake()],
-    });
-
-    TestBed.overrideComponent(RecipeSearch, {
-      set: {
-        imports: [],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      configureTestBed(testBed) {
+        testBed
+          .inject(RecipeRepositoryFake)
+          .setRecipes([
+            recipeMother.withBasicInfo('Burger').build(),
+            recipeMother.withBasicInfo('Salad').build(),
+          ]);
       },
     });
-
-    TestBed.inject(RecipeRepositoryFake).setRecipes([
-      recipeMother.withBasicInfo('Burger').build(),
-      recipeMother.withBasicInfo('Salad').build(),
-    ]);
-
-    const fixture = TestBed.createComponent(RecipeSearch);
     await fixture.whenStable();
 
     return {
       getRecipeNames() {
-        return fixture.debugElement
-          .queryAll(By.css('wm-recipe-preview'))
-          .map((previewEl) => previewEl.properties.recipe.name);
+        throw new Error('😱 Not implemented yet!');
       },
     };
   }
