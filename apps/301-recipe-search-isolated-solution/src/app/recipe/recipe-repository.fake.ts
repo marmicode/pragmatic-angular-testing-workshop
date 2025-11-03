@@ -1,12 +1,14 @@
-import { Injectable, Provider } from '@angular/core';
-import { RecipeFilterCriteria } from './recipe-filter-criteria';
+import {
+  EnvironmentProviders,
+  Injectable,
+  makeEnvironmentProviders,
+} from '@angular/core';
 import { defer, Observable, of } from 'rxjs';
 import { Recipe } from './recipe';
+import { RecipeFilterCriteria } from './recipe-filter-criteria';
 import { RecipeRepository, RecipeRepositoryDef } from './recipe-repository';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class RecipeRepositoryFake implements RecipeRepositoryDef {
   private _recipes: Recipe[] = [];
 
@@ -42,12 +44,12 @@ export class RecipeRepositoryFake implements RecipeRepositoryDef {
   }
 }
 
-export function provideRecipeRepositoryFake(): Provider[] {
-  return [
+export function provideRecipeRepositoryFake(): EnvironmentProviders {
+  return makeEnvironmentProviders([
     RecipeRepositoryFake,
     {
       provide: RecipeRepository,
       useExisting: RecipeRepositoryFake,
     },
-  ];
+  ]);
 }

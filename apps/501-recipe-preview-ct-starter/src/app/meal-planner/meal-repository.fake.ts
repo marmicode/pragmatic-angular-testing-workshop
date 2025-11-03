@@ -1,11 +1,13 @@
-import { Injectable, Provider } from '@angular/core';
+import {
+  EnvironmentProviders,
+  Injectable,
+  makeEnvironmentProviders,
+} from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Recipe } from '../recipe/recipe';
 import { MealRepository, MealRepositoryDef } from './meal-repository';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class MealRepositoryFake implements MealRepositoryDef {
   private _meals: Recipe[] = [];
 
@@ -23,12 +25,12 @@ export class MealRepositoryFake implements MealRepositoryDef {
   }
 }
 
-export function provideMealRepositoryFake(): Provider[] {
-  return [
+export function provideMealRepositoryFake(): EnvironmentProviders {
+  return makeEnvironmentProviders([
     MealRepositoryFake,
     {
       provide: MealRepository,
       useExisting: MealRepositoryFake,
     },
-  ];
+  ]);
 }
