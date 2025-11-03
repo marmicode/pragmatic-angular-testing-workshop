@@ -4,6 +4,9 @@
   "include": [],
   "references": [
     {
+      "path": "./testronaut/tsconfig.json"
+    },
+    {
       "path": "./tsconfig.app.json"
     },
     {
@@ -11,9 +14,6 @@
     },
     {
       "path": "./tsconfig.editor.json"
-    },
-    {
-      "path": "./playwright/tsconfig.json"
     }
   ],
   "compilerOptions": {

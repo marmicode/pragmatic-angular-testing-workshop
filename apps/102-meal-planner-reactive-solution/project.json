@@ -68,12 +68,6 @@
         "buildTarget": ":build"
       }
     },
-    "reset": {
-      "command": "rm -rf .swc playwright/.cache",
-      "options": {
-        "cwd": "{projectRoot}"
-      }
-    },
     "test": {
       "configurations": {
         "debug": {

@@ -58,25 +58,6 @@ jobs:
         uses: ./.github/actions/setup
       - run: pnpm nx affected -t test --pass-with-no-tests
 
-  playwright-ct:
-    name: 🎭 Playwright CT
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup
-        uses: ./.github/actions/setup
-      - name: Playwright browsers install
-        run: pnpm playwright install --with-deps
-      - run: pnpm nx affected -t test-ui --pass-with-no-tests --parallel=1
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: 🎭 Playwright Report
-          path: dist/.playwright
-          retention-days: 7
-
   testronaut:
     name: 🧑‍🚀 Testronaut
     runs-on: ubuntu-22.04
@@ -104,7 +85,6 @@ jobs:
       - build
       - jest
       - lint
-      - playwright-ct
       - sanity-check
       - test
       - testronaut
