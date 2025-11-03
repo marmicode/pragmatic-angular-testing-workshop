@@ -14,7 +14,7 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
-  it('filters filter recipes by keywords', async () => {
+  it('filters recipes by keywords', async () => {
     const { getRecipeNames, updateFilter } = await createComponent();
 
     await updateFilter({

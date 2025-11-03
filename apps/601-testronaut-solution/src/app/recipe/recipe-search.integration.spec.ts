@@ -20,7 +20,7 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNameEls()[1]).toHaveTextContent('Salad');
   });
 
-  it('filters filter recipes by keywords', async () => {
+  it('filters recipes by keywords', async () => {
     const { getRecipeNameEls, updateFilter } = await mountRecipeSearch();
 
     await updateFilter({
