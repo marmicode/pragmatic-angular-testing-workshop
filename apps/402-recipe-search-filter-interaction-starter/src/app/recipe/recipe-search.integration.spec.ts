@@ -15,6 +15,8 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNameEls()[1]).toHaveTextContent('Salad');
   });
 
+  it.todo('🚧 filters recipes by keywords');
+
   async function mountRecipeSearch() {
     const { fixture } = await render(RecipeSearch, {
       providers: [provideRecipeRepositoryFake()],
@@ -33,6 +35,10 @@ describe(RecipeSearch.name, () => {
     return {
       getRecipeNameEls() {
         return screen.queryAllByRole('heading');
+      },
+      async updateFilter({ keywords }: { keywords: string }) {
+        // TODO: implement this
+        throw new Error('🚧 Work in progress!');
       },
     };
   }

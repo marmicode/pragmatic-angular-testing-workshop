@@ -13,6 +13,8 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
+  it.todo('🚧 filters recipes by keywords');
+
   function createComponent() {
     TestBed.configureTestingModule({
       providers: [RecipeSearch, provideRecipeRepositoryFake()],
@@ -28,6 +30,10 @@ describe(RecipeSearch.name, () => {
     return {
       getRecipeNames() {
         return component.recipes()?.map((recipe) => recipe.name);
+      },
+      async updateFilter({ keywords }: { keywords: string }) {
+        // TODO: implement this
+        throw new Error('🚧 Work in progress!');
       },
     };
   }
