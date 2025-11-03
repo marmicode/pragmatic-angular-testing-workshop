@@ -39,7 +39,7 @@ describe(MealPlanner.name, () => {
     ]);
   });
 
-  it.todo('🚧 should fetch recipes from meal repository');
+  it.todo('🚧 fetches recipes from meal repository');
 
   describe('recipes$', () => {
     it('emits empty array when no recipes', async () => {

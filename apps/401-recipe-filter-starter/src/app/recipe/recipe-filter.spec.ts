@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 
 describe(RecipeFilter.name, () => {
-  it.todo('🚧 should trigger filterChange output');
+  it.todo('🚧 triggers filterChange output');
 
   async function mountRecipeFilter() {
     const { fixture } = await render(RecipeFilter);

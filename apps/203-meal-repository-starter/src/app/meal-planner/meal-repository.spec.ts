@@ -4,11 +4,11 @@ import { recipeMother } from '../testing/recipe.mother';
 import { provideLocalStorageFake } from '../shared/local-storage.fake';
 
 describe(MealRepository.name, () => {
-  it.todo('🚧 should add recipe');
+  it.todo('🚧 adds recipes');
 
-  it.todo('🚧 should return empty array when storage is empty');
+  it.todo('🚧 returns empty array when storage is empty');
 
-  it.todo('🚧 should return empty array when storage value is invalid');
+  it.todo('🚧 returns empty array when storage value is invalid');
 
   function createMealRepository() {
     const { getMealRepo, ...utils } = setUpMealRepository();

@@ -8,7 +8,7 @@ import {
 import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
-  it.todo('searches recipes without filtering', async () => {
+  it.todo('🚧 searches recipes without filtering', async () => {
     const { getRecipeNameEls } = await mountRecipeSearch();
 
     throw new Error('🚧 Work in progress!');
