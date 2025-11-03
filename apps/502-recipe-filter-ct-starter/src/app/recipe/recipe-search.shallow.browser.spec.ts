@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { page } from 'vitest/browser';
