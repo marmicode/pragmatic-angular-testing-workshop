@@ -21,7 +21,7 @@ import { RecipeAddButton } from '../meal-planner/recipe-add-button.ng';
     <wm-catalog>
       @if (recipes.hasValue()) {
         @for (recipe of recipes.value(); track recipe.id) {
-          <wm-recipe-preview [recipe]="recipe">
+          <wm-recipe-preview [recipe]="recipe" data-testid="recipe-preview">
             <wm-recipe-add-button [recipe]="recipe" />
           </wm-recipe-preview>
         }

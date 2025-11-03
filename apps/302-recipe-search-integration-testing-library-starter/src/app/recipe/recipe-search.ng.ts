@@ -19,7 +19,7 @@ import { RecipeRepository } from './recipe-repository';
   template: `
     <wm-catalog>
       @for (recipe of recipes; track recipe.id) {
-        <wm-recipe-preview [recipe]="recipe" />
+        <wm-recipe-preview [recipe]="recipe" data-testid="recipe-preview" />
       }
     </wm-catalog>
   `,
