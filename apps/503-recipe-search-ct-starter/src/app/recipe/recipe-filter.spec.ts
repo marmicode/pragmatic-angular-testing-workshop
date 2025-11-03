@@ -1,20 +1,19 @@
-import { RecipeFilter } from './recipe-filter.ng';
-import { render, screen } from '@testing-library/angular';
+import { outputBinding } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
-import { observe } from '@whiskmate/testing/observe';
 import { RecipeFilterCriteria } from './recipe-filter-criteria';
+import { RecipeFilter } from './recipe-filter.ng';
 
 describe(RecipeFilter.name, () => {
   it('triggers filterChange output', async () => {
-    const { component, setInputValue } = await mountRecipeFilter();
-
-    using observer = observe(component.filterChange);
+    const { filterChangeSpy, setInputValue } = await mountRecipeFilter();
 
     await setInputValue('Keywords', 'Cauliflower');
     await setInputValue('Max Ingredients', '3');
     await setInputValue('Max Steps', '10');
 
-    expect(observer.next).toHaveBeenLastCalledWith({
+    expect(filterChangeSpy).toHaveBeenLastCalledWith({
       keywords: 'Cauliflower',
       maxIngredientCount: 3,
       maxStepCount: 10,
@@ -22,10 +21,14 @@ describe(RecipeFilter.name, () => {
   });
 
   async function mountRecipeFilter() {
-    const { fixture } = await render(RecipeFilter);
+    const filterChangeSpy = vi.fn();
+
+    TestBed.createComponent(RecipeFilter, {
+      bindings: [outputBinding('filterChange', filterChangeSpy)],
+    });
 
     return {
-      component: fixture.componentInstance,
+      filterChangeSpy,
       async setInputValue(
         label: 'Keywords' | 'Max Ingredients' | 'Max Steps',
         value: string,
