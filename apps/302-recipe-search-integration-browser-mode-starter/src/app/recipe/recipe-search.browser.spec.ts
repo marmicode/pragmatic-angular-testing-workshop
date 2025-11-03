@@ -1,4 +1,4 @@
-import { render } from '@testing-library/angular';
+import { TestBed } from '@angular/core/testing';
 import { page } from 'vitest/browser';
 import { recipeMother } from '../testing/recipe.mother';
 import {
@@ -15,17 +15,16 @@ describe(RecipeSearch.name, () => {
   });
 
   async function mountRecipeSearch() {
-    await render(RecipeSearch, {
+    TestBed.configureTestingModule({
       providers: [provideRecipeRepositoryFake()],
-      configureTestBed(testBed) {
-        testBed
-          .inject(RecipeRepositoryFake)
-          .setRecipes([
-            recipeMother.withBasicInfo('Burger').build(),
-            recipeMother.withBasicInfo('Salad').build(),
-          ]);
-      },
     });
+
+    TestBed.inject(RecipeRepositoryFake).setRecipes([
+      recipeMother.withBasicInfo('Burger').build(),
+      recipeMother.withBasicInfo('Salad').build(),
+    ]);
+
+    TestBed.createComponent(RecipeSearch);
 
     return {
       getRecipeNameEls() {
