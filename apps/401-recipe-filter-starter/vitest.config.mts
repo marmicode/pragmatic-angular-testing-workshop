@@ -19,13 +19,12 @@ export default mergeConfig(
       },
       watch: false,
       pool: 'threads',
-      isolate: false,
       /**
-       * @todo remove `maxWorkers` once no-isolate parallelism is supported.
+       * @todo disable `isolate` once no-isolate parallelism is supported.
        * @see https://github.com/vitest-dev/vitest/issues/8919
        * @see https://github.com/vitest-dev/vitest/pull/8915
        */
-      maxWorkers: 1,
+      isolate: true,
       projects: [
         {
           extends: true,
