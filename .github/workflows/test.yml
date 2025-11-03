@@ -102,6 +102,7 @@ jobs:
     runs-on: ubuntu-22.04
     needs:
       - build
+      - jest
       - lint
       - playwright-ct
       - sanity-check
