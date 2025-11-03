@@ -20,6 +20,7 @@ export default mergeConfig(
       watch: false,
       pool: 'threads',
       isolate: false,
+      maxWorkers: 1,
       projects: [
         {
           extends: true,

@@ -1,10 +1,14 @@
 import analog from '@analogjs/vite-plugin-angular';
 import { defineConfig, Plugin } from 'vite';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { sep } from 'node:path';
+import { join } from 'node:path/posix';
+
+const projectName = __dirname.split(sep).pop() ?? 'whiskmate';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/tests/whiskmate',
+  cacheDir: join('../../node_modules/.vite/tests', projectName),
   plugins: [applyAnalogWorkaround(analog({ jit: false })), nxViteTsPaths()],
 });
 
