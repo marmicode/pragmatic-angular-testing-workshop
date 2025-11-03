@@ -12,7 +12,7 @@ export default defineConfig(
   withTestronautAngular({
     configPath: __filename,
     testServer: {
-      command: `nx serve ${projectName} --configuration testronaut --port {port}`,
+      command: `pnpm exec nx serve ${projectName} --configuration testronaut --port {port}`,
     },
   }),
   {
