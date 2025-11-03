@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { page } from 'vitest/browser';
+import { provideMealRepositoryFake } from '../meal-planner/meal-repository.fake';
 import { recipeMother } from '../testing/recipe.mother';
 import {
   provideRecipeRepositoryFake,
@@ -28,7 +29,7 @@ describe(RecipeSearch.name, () => {
 
   async function mountRecipeSearch() {
     TestBed.configureTestingModule({
-      providers: [provideRecipeRepositoryFake()],
+      providers: [provideMealRepositoryFake(), provideRecipeRepositoryFake()],
     });
 
     TestBed.inject(RecipeRepositoryFake).setRecipes([

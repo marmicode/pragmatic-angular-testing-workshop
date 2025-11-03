@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
+import { provideMealRepositoryFake } from '../meal-planner/meal-repository.fake';
 import { recipeMother } from '../testing/recipe.mother';
 import {
   provideRecipeRepositoryFake,
@@ -29,7 +30,7 @@ describe(RecipeSearch.name, () => {
 
   async function mountRecipeSearch() {
     const { fixture } = await render(RecipeSearch, {
-      providers: [provideRecipeRepositoryFake()],
+      providers: [provideMealRepositoryFake(), provideRecipeRepositoryFake()],
       configureTestBed(testBed) {
         testBed
           .inject(RecipeRepositoryFake)
