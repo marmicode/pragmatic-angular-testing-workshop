@@ -17,7 +17,12 @@
     { "plugin": "@nx/jest/plugin", "options": { "targetName": "jest" } },
     "@nx/eslint/plugin",
     "@nx/playwright/plugin",
-    "@nx/vite/plugin"
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {},
+      /* Ignore root vitest.config.mts. */
+      "exclude": ["vitest.config.mts"]
+    }
   ],
   "generators": {
     "@nx/angular:application": {
