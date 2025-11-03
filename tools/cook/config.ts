@@ -65,6 +65,10 @@ const exercises: Exercise[] = [
     name: '303 - Recipe Search Shallow (Testing Library)',
   },
   {
+    id: '303-recipe-search-shallow-browser-mode',
+    name: '303 - Recipe Search Shallow (Vitest Browser Mode)',
+  },
+  {
     id: '304-recipe-search-async-pipe',
     name: '304 - Recipe Search Async Pipe',
     implementationFiles: [files.recipeSearch],
