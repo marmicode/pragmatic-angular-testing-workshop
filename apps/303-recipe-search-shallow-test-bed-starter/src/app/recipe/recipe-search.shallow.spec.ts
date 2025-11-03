@@ -9,7 +9,7 @@ import { RecipeSearch } from './recipe-search.ng';
 describe(RecipeSearch.name, () => {
   it.todo('🚧 should search recipes without filtering');
 
-  async function renderComponent() {
+  async function mountRecipeSearch() {
     TestBed.configureTestingModule({
       providers: [provideRecipeRepositoryFake()],
     });

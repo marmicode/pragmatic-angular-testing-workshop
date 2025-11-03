@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 describe(RecipeFilter.name, () => {
   it.todo('🚧 should trigger filterChange output');
 
-  async function renderComponent() {
+  async function mountRecipeFilter() {
     const { fixture } = await render(RecipeFilter);
 
     return {

@@ -4,7 +4,7 @@ import { RecipeSearch } from './recipe-search.ng';
 describe(RecipeSearch.name, () => {
   it.todo('🚧 should search recipes without filtering');
 
-  async function renderComponent() {
+  async function mountRecipeSearch() {
     const fixture = TestBed.createComponent(RecipeSearch);
     await fixture.whenStable();
 

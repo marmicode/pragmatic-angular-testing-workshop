@@ -18,7 +18,7 @@ describe(RecipeSearchComponent.name, () => {
     throw new Error('🚧 work in progress!');
   });
 
-  function renderComponent() {
+  function mountRecipeSearch() {
     cy.mount(RecipeSearchComponent, {
       providers: [provideRecipeRepositoryFake()],
     });

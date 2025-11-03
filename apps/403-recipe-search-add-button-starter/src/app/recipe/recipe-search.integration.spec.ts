@@ -9,7 +9,7 @@ import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
-    const { getRecipeNameEls } = await renderComponent();
+    const { getRecipeNameEls } = await mountRecipeSearch();
 
     expect(getRecipeNameEls()).toHaveLength(2);
     expect(getRecipeNameEls()[0]).toHaveTextContent('Burger');
@@ -17,7 +17,7 @@ describe(RecipeSearch.name, () => {
   });
 
   it('filters filter recipes by keywords', async () => {
-    const { getRecipeNameEls, updateFilter } = await renderComponent();
+    const { getRecipeNameEls, updateFilter } = await mountRecipeSearch();
 
     await updateFilter({
       keywords: 'Burg',
@@ -27,7 +27,7 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNameEls()[0]).toHaveTextContent('Burger');
   });
 
-  async function renderComponent() {
+  async function mountRecipeSearch() {
     const { fixture } = await render(RecipeSearch, {
       providers: [provideRecipeRepositoryFake()],
       configureTestBed(testBed) {

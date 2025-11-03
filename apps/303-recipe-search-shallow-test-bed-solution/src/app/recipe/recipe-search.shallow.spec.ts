@@ -10,12 +10,12 @@ import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
-    const { getRecipeNames } = await renderComponent();
+    const { getRecipeNames } = await mountRecipeSearch();
 
     expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
-  async function renderComponent() {
+  async function mountRecipeSearch() {
     TestBed.configureTestingModule({
       providers: [provideRecipeRepositoryFake()],
     });

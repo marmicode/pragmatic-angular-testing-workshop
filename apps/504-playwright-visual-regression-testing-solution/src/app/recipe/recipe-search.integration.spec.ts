@@ -13,7 +13,7 @@ import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
-    const { getRecipeNameEls } = await renderComponent();
+    const { getRecipeNameEls } = await mountRecipeSearch();
 
     expect(getRecipeNameEls()).toHaveLength(2);
     expect(getRecipeNameEls()[0]).toHaveTextContent('Burger');
@@ -21,7 +21,7 @@ describe(RecipeSearch.name, () => {
   });
 
   it('filters filter recipes by keywords', async () => {
-    const { getRecipeNameEls, updateFilter } = await renderComponent();
+    const { getRecipeNameEls, updateFilter } = await mountRecipeSearch();
 
     await updateFilter({
       keywords: 'Burg',
@@ -33,7 +33,7 @@ describe(RecipeSearch.name, () => {
 
   it('adds recipe to meal planner', async () => {
     const { getFirstAddButton, getMealPlannerRecipeNames } =
-      await renderComponent();
+      await mountRecipeSearch();
 
     await userEvent.click(getFirstAddButton());
 
@@ -42,14 +42,14 @@ describe(RecipeSearch.name, () => {
 
   it("should disable add button if can't add", async () => {
     const { getFirstAddButton } =
-      await renderComponentWithBurgerInMealPlanner();
+      await mountRecipeSearchWithBurgerInMealPlanner();
 
     /* Can't add burger because there is already a burger with the same id. */
     expect(getFirstAddButton()).toBeDisabled();
   });
 
-  async function renderComponentWithBurgerInMealPlanner() {
-    const { mealPlanner, whenStable, ...utils } = await renderComponent();
+  async function mountRecipeSearchWithBurgerInMealPlanner() {
+    const { mealPlanner, whenStable, ...utils } = await mountRecipeSearch();
 
     mealPlanner.addRecipe(recipeMother.withBasicInfo('Burger').build());
 
@@ -58,7 +58,7 @@ describe(RecipeSearch.name, () => {
     return utils;
   }
 
-  async function renderComponent() {
+  async function mountRecipeSearch() {
     const { fixture } = await render(RecipeSearch, {
       providers: [provideMealRepositoryFake(), provideRecipeRepositoryFake()],
       configureTestBed(testBed) {

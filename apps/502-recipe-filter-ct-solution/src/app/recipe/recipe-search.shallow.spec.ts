@@ -18,13 +18,13 @@ import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
-    const { getRecipeNames } = await renderComponent();
+    const { getRecipeNames } = await mountRecipeSearch();
 
     expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
   it('searches recipes using given filter', async () => {
-    const { getRecipeNames, updateFilter } = await renderComponent();
+    const { getRecipeNames, updateFilter } = await mountRecipeSearch();
 
     await updateFilter({
       keywords: 'Burg',
@@ -36,7 +36,7 @@ describe(RecipeSearch.name, () => {
 
   it('adds recipe to meal planner', async () => {
     const { getFirstAddButton, getMealPlannerRecipeNames } =
-      await renderComponent();
+      await mountRecipeSearch();
 
     await userEvent.click(getFirstAddButton());
 
@@ -45,14 +45,14 @@ describe(RecipeSearch.name, () => {
 
   it("should disable add button if can't add", async () => {
     const { getFirstAddButton } =
-      await renderComponentWithBurgerInMealPlanner();
+      await mountRecipeSearchWithBurgerInMealPlanner();
 
     /* Can't add burger because there is already a burger with the same id. */
     expect(getFirstAddButton()).toBeDisabled();
   });
 
-  async function renderComponentWithBurgerInMealPlanner() {
-    const { mealPlanner, whenStable, ...utils } = await renderComponent();
+  async function mountRecipeSearchWithBurgerInMealPlanner() {
+    const { mealPlanner, whenStable, ...utils } = await mountRecipeSearch();
 
     mealPlanner.addRecipe(recipeMother.withBasicInfo('Burger').build());
 
@@ -61,7 +61,7 @@ describe(RecipeSearch.name, () => {
     return { ...utils };
   }
 
-  async function renderComponent() {
+  async function mountRecipeSearch() {
     const { debugElement, fixture } = await render(RecipeSearch, {
       providers: [provideMealRepositoryFake(), provideRecipeRepositoryFake()],
       configureTestBed(testBed) {

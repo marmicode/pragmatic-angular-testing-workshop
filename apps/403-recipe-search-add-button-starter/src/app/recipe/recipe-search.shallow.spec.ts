@@ -11,13 +11,13 @@ import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
   it('searches recipes without filtering', async () => {
-    const { getRecipeNames } = await renderComponent();
+    const { getRecipeNames } = await mountRecipeSearch();
 
     expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
   it('searches recipes using given filter', async () => {
-    const { getRecipeNames, updateFilter } = await renderComponent();
+    const { getRecipeNames, updateFilter } = await mountRecipeSearch();
 
     await updateFilter({
       keywords: 'Burg',
@@ -27,7 +27,7 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNames()).toEqual(['Burger']);
   });
 
-  async function renderComponent() {
+  async function mountRecipeSearch() {
     const { debugElement, fixture } = await render(RecipeSearch, {
       providers: [provideRecipeRepositoryFake()],
       configureTestBed(testBed) {

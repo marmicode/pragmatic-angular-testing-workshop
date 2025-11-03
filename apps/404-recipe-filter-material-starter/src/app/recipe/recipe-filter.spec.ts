@@ -6,7 +6,7 @@ import { RecipeFilterCriteria } from './recipe-filter-criteria';
 
 describe(RecipeFilter.name, () => {
   it('triggers filterChange output', async () => {
-    const { component, setInputValue } = await renderComponent();
+    const { component, setInputValue } = await mountRecipeFilter();
 
     using observer = observe(component.filterChange);
 
@@ -21,7 +21,7 @@ describe(RecipeFilter.name, () => {
     } satisfies RecipeFilterCriteria);
   });
 
-  async function renderComponent() {
+  async function mountRecipeFilter() {
     const { fixture } = await render(RecipeFilter);
 
     return {
