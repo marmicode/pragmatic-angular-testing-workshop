@@ -10,11 +10,12 @@ describe(RecipeFilter.name, () => {
   async function mountRecipeFilter() {
     const filterChangeSpy = createSpy();
 
-    await render(RecipeFilter, {
+    const { fixture } = await render(RecipeFilter, {
       bindings: [
         // TODO: add output bindings here
       ],
     });
+    await fixture.whenStable();
 
     return {
       filterChangeSpy,

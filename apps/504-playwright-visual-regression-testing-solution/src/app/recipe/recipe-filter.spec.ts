@@ -23,9 +23,10 @@ describe(RecipeFilter.name, () => {
   async function mountRecipeFilter() {
     const filterChangeSpy = createSpy();
 
-    await render(RecipeFilter, {
+    const { fixture } = await render(RecipeFilter, {
       bindings: [outputBinding('filterChange', filterChangeSpy)],
     });
+    await fixture.whenStable();
 
     return {
       filterChangeSpy,
