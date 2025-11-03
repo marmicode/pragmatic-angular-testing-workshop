@@ -53,6 +53,10 @@ const exercises: Exercise[] = [
     name: '302 - Recipe Search Integration (Testing Library)',
   },
   {
+    id: '302-recipe-search-integration-browser-mode',
+    name: '302 - Recipe Search Integration (Vitest Browser Mode)',
+  },
+  {
     id: '303-recipe-search-shallow-test-bed',
     name: '303 - Recipe Search Shallow (TestBed)',
   },
