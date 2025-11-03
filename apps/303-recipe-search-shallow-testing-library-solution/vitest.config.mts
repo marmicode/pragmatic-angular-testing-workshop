@@ -22,7 +22,8 @@ export default mergeConfig(
       isolate: false,
       /**
        * @todo remove `maxWorkers` once no-isolate parallelism is supported.
-       * @see https://github.com/vitest-dev/vitest/issues/8478#issuecomment-3421518590
+       * @see https://github.com/vitest-dev/vitest/issues/8919
+       * @see https://github.com/vitest-dev/vitest/pull/8915
        */
       maxWorkers: 1,
       projects: [
