@@ -8,13 +8,13 @@ import {
 import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
-  it('should search recipes without filtering', async () => {
+  it('searches recipes without filtering', async () => {
     const { getRecipeNames } = await createComponent();
 
     expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
-  it('should filter recipes by keywords', async () => {
+  it('filters filter recipes by keywords', async () => {
     const { getRecipeNames, updateFilter } = await createComponent();
 
     await updateFilter({

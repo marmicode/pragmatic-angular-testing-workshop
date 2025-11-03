@@ -3,7 +3,7 @@ import { recipeMother } from '../testing/recipe.mother';
 import { MealPlanner } from './meal-planner';
 
 describe(MealPlanner.name, () => {
-  it('should add recipe', () => {
+  it('adds recipes', () => {
     const { mealPlanner, burger, salad } = createMealPlanner();
 
     mealPlanner.addRecipe(burger);
@@ -15,19 +15,19 @@ describe(MealPlanner.name, () => {
     ]);
   });
 
-  it('should not allow recipe duplicates', () => {
+  it('does not allow recipe duplicates', () => {
     const { mealPlanner, burgerDuplicate } = createMealPlannerWithBurger();
 
     expect(mealPlanner.canAddRecipe(burgerDuplicate)).toBe(false);
   });
 
-  it('should allow new recipes', () => {
+  it('allows new recipes', () => {
     const { mealPlanner, salad } = createMealPlannerWithBurger();
 
     expect(mealPlanner.canAddRecipe(salad)).toBe(true);
   });
 
-  it('should throw error if recipe is already present', () => {
+  it('throws error if recipe is already present', () => {
     const { mealPlanner, burgerDuplicate } = createMealPlannerWithBurger();
 
     expect(() => mealPlanner.addRecipe(burgerDuplicate)).toThrow(

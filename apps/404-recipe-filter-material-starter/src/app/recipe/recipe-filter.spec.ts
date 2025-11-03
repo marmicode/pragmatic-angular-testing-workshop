@@ -5,7 +5,7 @@ import { observe } from '@whiskmate/testing/observe';
 import { RecipeFilterCriteria } from './recipe-filter-criteria';
 
 describe(RecipeFilter.name, () => {
-  it('should trigger filterChange output', async () => {
+  it('triggers filterChange output', async () => {
     const { component, setInputValue } = await renderComponent();
 
     using observer = observe(component.filterChange);

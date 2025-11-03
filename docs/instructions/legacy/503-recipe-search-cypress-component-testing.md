@@ -64,7 +64,7 @@ In order to allow the test to arrange the fakes before the component is mounted,
 You can use the `provideAppInitializer()` function to reduce the boilerplate.
 
 ```ts
-it('should ...', () => {
+it('filters ...', () => {
    const { ... } = renderComponent(() => inject(MyFake).doSomething());
 });
 

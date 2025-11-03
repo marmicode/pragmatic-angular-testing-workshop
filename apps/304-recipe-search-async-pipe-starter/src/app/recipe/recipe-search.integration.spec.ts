@@ -7,7 +7,7 @@ import {
 import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
-  it('should search recipes without filtering', async () => {
+  it('searches recipes without filtering', async () => {
     const { getRecipeNameEls } = await renderComponent();
 
     expect(getRecipeNameEls()).toHaveLength(2);

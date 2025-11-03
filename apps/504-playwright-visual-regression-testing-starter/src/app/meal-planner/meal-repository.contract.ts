@@ -8,7 +8,7 @@ export const verifyMealRepositoryContract = (
   const burger = recipeMother.withBasicInfo('Burger').build();
   const salad = recipeMother.withBasicInfo('Salad').build();
 
-  it('should add recipe', async () => {
+  it('adds recipes', async () => {
     const { mealRepo } = createMealRepository();
 
     await lastValueFrom(mealRepo.addMeal(burger));
@@ -20,7 +20,7 @@ export const verifyMealRepositoryContract = (
     ]);
   });
 
-  it('should return empty array initially', async () => {
+  it('returns empty array initially', async () => {
     const { mealRepo } = createMealRepository();
 
     expect(await lastValueFrom(mealRepo.getMeals())).toEqual([]);

@@ -17,13 +17,13 @@ import {
 import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
-  it('should search recipes without filtering', async () => {
+  it('searches recipes without filtering', async () => {
     const { getRecipeNames } = await renderComponent();
 
     expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
-  it('should search recipes using given filter', async () => {
+  it('searches recipes using given filter', async () => {
     const { getRecipeNames, updateFilter } = await renderComponent();
 
     await updateFilter({
@@ -34,7 +34,7 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNames()).toEqual(['Burger']);
   });
 
-  it('should add recipe to meal planner', async () => {
+  it('adds recipe to meal planner', async () => {
     const { getFirstAddButton, getMealPlannerRecipeNames } =
       await renderComponent();
 

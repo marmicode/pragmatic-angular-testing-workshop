@@ -7,7 +7,7 @@ import {
 import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
-  it('should search recipes without filtering', () => {
+  it('searches recipes without filtering', () => {
     const { component } = createComponent();
 
     expect(component.recipes).toEqual([

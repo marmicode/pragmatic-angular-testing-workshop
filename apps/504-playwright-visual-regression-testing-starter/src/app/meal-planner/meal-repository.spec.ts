@@ -9,7 +9,7 @@ import { recipeMother } from '../testing/recipe.mother';
 describe(MealRepository.name, () => {
   verifyMealRepositoryContract(createMealRepository);
 
-  it('should return empty array when storage value is invalid', async () => {
+  it('returns empty array when storage value is invalid', async () => {
     const { getMealRepo, setStorageValue } = setUpMealRepository();
 
     setStorageValue('invalid-value');

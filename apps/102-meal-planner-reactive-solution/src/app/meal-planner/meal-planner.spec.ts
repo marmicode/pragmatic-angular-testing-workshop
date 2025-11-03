@@ -4,7 +4,7 @@ import { recipeMother } from '../testing/recipe.mother';
 import { MealPlanner } from './meal-planner';
 
 describe(MealPlanner.name, () => {
-  it('should add recipe', () => {
+  it('adds recipes', () => {
     const { mealPlanner, burger, salad } = createMealPlanner();
 
     mealPlanner.addRecipe(burger);
@@ -16,19 +16,19 @@ describe(MealPlanner.name, () => {
     ]);
   });
 
-  it('should not allow recipe duplicates', () => {
+  it('does not allow recipe duplicates', () => {
     const { mealPlanner, burgerDuplicate } = createMealPlannerWithBurger();
 
     expect(mealPlanner.canAddRecipe(burgerDuplicate)).toBe(false);
   });
 
-  it('should allow new recipes', () => {
+  it('allows new recipes', () => {
     const { mealPlanner, salad } = createMealPlannerWithBurger();
 
     expect(mealPlanner.canAddRecipe(salad)).toBe(true);
   });
 
-  it('should throw error if recipe is already present', () => {
+  it('throws error if recipe is already present', () => {
     const { mealPlanner, burgerDuplicate } = createMealPlannerWithBurger();
 
     expect(() => mealPlanner.addRecipe(burgerDuplicate)).toThrow(
@@ -37,7 +37,7 @@ describe(MealPlanner.name, () => {
   });
 
   describe('recipes$', () => {
-    it('should emit empty array when no recipes', async () => {
+    it('emits empty array when no recipes', async () => {
       const { mealPlanner } = createMealPlanner();
 
       using observer = observe(mealPlanner.recipes$);
@@ -46,7 +46,7 @@ describe(MealPlanner.name, () => {
       expect(observer.next).toHaveBeenCalledWith([]);
     });
 
-    it('should emit recipes when added', () => {
+    it('emits recipes when added', () => {
       const { mealPlanner, burger, salad } = createMealPlanner();
 
       using observer = observe(mealPlanner.recipes$);
@@ -68,7 +68,7 @@ describe(MealPlanner.name, () => {
   });
 
   describe('watchCanAddRecipe()', () => {
-    it('should instantly emit if recipe can be added', () => {
+    it('emits instantly if recipe can be added', () => {
       const { mealPlanner, burger } = createMealPlanner();
 
       using observer = observe(mealPlanner.watchCanAddRecipe(burger));

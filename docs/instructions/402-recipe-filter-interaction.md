@@ -35,7 +35,7 @@ pnpm test
 
 #### 2. Open `src/app/recipe/recipe-search.shallow.spec.ts`.
 
-#### 3. Add a new test: `it('should search recipes using given filter', ...)`.
+#### 3. Add a new test: `it('searches recipes using given filter', ...)`.
 
 #### 4. Trigger `filterChange` on `RecipeFilter`. (Cf. [trigger events using `debugElement.triggerEventHandler`](#-tip-trigger-events-using-debugelementtriggereventhandler))
 

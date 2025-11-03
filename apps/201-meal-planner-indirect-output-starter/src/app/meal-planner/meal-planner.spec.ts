@@ -5,7 +5,7 @@ import { recipeMother } from '../testing/recipe.mother';
 import { MealPlanner } from './meal-planner';
 
 describe(MealPlanner.name, () => {
-  it('should add recipe', async () => {
+  it('adds recipes', async () => {
     const { mealPlanner, burger, salad } = createMealPlanner();
 
     mealPlanner.addRecipe(burger);
@@ -17,7 +17,7 @@ describe(MealPlanner.name, () => {
     ]);
   });
 
-  it('should throw error if recipe is already present', () => {
+  it('throws error if recipe is already present', () => {
     const { mealPlanner, burgerDuplicate } = createMealPlannerWithBurger();
 
     expect(() => mealPlanner.addRecipe(burgerDuplicate)).toThrow(
@@ -28,7 +28,7 @@ describe(MealPlanner.name, () => {
   it.todo('🚧 should add recipe to meal repository');
 
   describe('recipes$', () => {
-    it('should emit empty array when no recipes', async () => {
+    it('emits empty array when no recipes', async () => {
       const { mealPlanner } = createMealPlanner();
 
       using observer = observe(mealPlanner.recipes$);
@@ -37,7 +37,7 @@ describe(MealPlanner.name, () => {
       expect(observer.next).toHaveBeenCalledWith([]);
     });
 
-    it('should emit recipes when added', () => {
+    it('emits recipes when added', () => {
       const { mealPlanner, burger, salad } = createMealPlanner();
 
       using observer = observe(mealPlanner.recipes$);
@@ -59,7 +59,7 @@ describe(MealPlanner.name, () => {
   });
 
   describe('watchCanAddRecipe()', () => {
-    it('should instantly emit if recipe can be added', () => {
+    it('emits instantly if recipe can be added', () => {
       const { mealPlanner, burger } = createMealPlanner();
 
       using observer = observe(mealPlanner.watchCanAddRecipe(burger));

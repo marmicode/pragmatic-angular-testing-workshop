@@ -6,7 +6,7 @@ import { provideLocalStorageFake } from '../shared/local-storage.fake';
 import { lastValueFrom } from 'rxjs';
 
 describe(MealRepository.name, () => {
-  it('should add recipe', async () => {
+  it('adds recipes', async () => {
     const { mealRepo, burger, salad } = createMealRepository();
 
     await lastValueFrom(mealRepo.addMeal(burger));
@@ -18,13 +18,13 @@ describe(MealRepository.name, () => {
     ]);
   });
 
-  it('should return empty array when storage is empty', async () => {
+  it('returns empty array when storage is empty', async () => {
     const { mealRepo } = createMealRepository();
 
     expect(await lastValueFrom(mealRepo.getMeals())).toEqual([]);
   });
 
-  it('should return empty array when storage value is invalid', async () => {
+  it('returns empty array when storage value is invalid', async () => {
     const { getMealRepo, setStorageValue } = setUpMealRepository();
 
     setStorageValue('invalid-value');

@@ -102,7 +102,7 @@ The example below tests the `Calculator.add` method. You can use it as a boilerp
 
 ```typescript
 describe(Calculator.name, () => {
-  it('should return sum', () => {
+  it('filters return sum', () => {
     const { calculator } = createCalculator();
 
     const result = calculator.add(1, 2);

@@ -5,7 +5,7 @@ import { RecipeFilterCriteria } from './recipe-filter-criteria';
 import { RecipeFilter } from './recipe-filter.ng';
 
 describe(RecipeFilter.name, () => {
-  it('should trigger filterChange output', async () => {
+  it('triggers filterChange output', async () => {
     const { component, setInputValue } = await renderComponent();
 
     using observer = observe(component.filterChange);

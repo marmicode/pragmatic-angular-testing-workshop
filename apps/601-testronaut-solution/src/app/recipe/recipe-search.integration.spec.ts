@@ -12,7 +12,7 @@ import {
 import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
-  it('should search recipes without filtering', async () => {
+  it('searches recipes without filtering', async () => {
     const { getRecipeNameEls } = await renderComponent();
 
     expect(getRecipeNameEls()).toHaveLength(2);
@@ -20,7 +20,7 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNameEls()[1]).toHaveTextContent('Salad');
   });
 
-  it('should filter recipes by keywords', async () => {
+  it('filters filter recipes by keywords', async () => {
     const { getRecipeNameEls, updateFilter } = await renderComponent();
 
     await updateFilter({
@@ -31,7 +31,7 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNameEls()[0]).toHaveTextContent('Burger');
   });
 
-  it('should add recipe to meal planner', async () => {
+  it('adds recipe to meal planner', async () => {
     const { getFirstAddButton, getMealPlannerRecipeNames } =
       await renderComponent();
 
