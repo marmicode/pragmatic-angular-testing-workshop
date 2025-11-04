@@ -19,26 +19,19 @@ You can choose to:
 
 :::
 
-## 🎯 Goal: Test `RecipeSearch`
+## 🎯 Goal #1: Test `RecipeSearch` with Real Server
 
-New component `RecipeSearch` should fetch recipes using `RecipeRepository` on startup.
+`RecipeSearch` component should fetch recipes using `RecipeRepository` on startup.
 
 **Implement tests** for `RecipeSearch` and make sure that:
 
-1. `recipes` property is set with the recipes returned by `RecipeRepository`.
+- `recipes` property is set with the recipes returned by `RecipeRepository`.
 
 ```ts
 export class RecipeSearch {
   recipes: Recipe[];
 }
 ```
-
-:::info
-You can try the same exercise with both:
-
-- the real server (Cf. [2.a. Configure the `TestBed` with real server](#2a-configure-the-testbed-with-real-server))
-- then with the fake repository (Cf. [2.b. Configure the `TestBed` with a test double](#2b-configure-the-testbed-with-a-test-double))
-  :::
 
 ### 📝 Steps
 
@@ -50,13 +43,40 @@ pnpm test
 
 #### 2. Open `src/app/recipe/recipe-search.isolated.spec.ts`.
 
-#### 3.a. Configure the `TestBed` with real server:
+#### 3. Configure the `TestBed` with real server:
 
 ```ts
 TestBed.configureTestingModule({ providers: [provideHttpClient()] });
 ```
 
-#### 3.b. Configure the `TestBed` with a test double:
+#### 4. Check `component.recipes` property.
+
+#### 5. [optional] Checkout the implementation if you've opted for TDD option.
+
+```sh
+pnpm cook checkout-impl
+```
+
+#### 6. ✅ Make sure tests are passing.
+
+## 🎯 Goal #2: Test `RecipeSearch` with a Test Double
+
+Same goal as [Goal #1](#-goal-1-test-recipesearch-with-real-server)
+
+We don't want to make real HTTP calls to our remote service.
+Therefore, we will replace the `RecipeRepository` service with a test double.
+
+### 📝 Steps
+
+#### 1. Run tests:
+
+```sh
+pnpm test
+```
+
+#### 2. Open `src/app/recipe/recipe-search.isolated.spec.ts`.
+
+#### 3. Configure the `TestBed` with a test double:
 
 ```ts
 TestBed.configureTestingModule({ providers: [provideRecipeRepositoryFake()] });
@@ -68,11 +88,13 @@ fake...
 
 #### 4. Check `component.recipes` property.
 
-#### 5. Checkout the implementation if you didn't do it already.
+#### 5. [optional] Checkout the implementation if you've opted for TDD option.
 
 ```sh
 pnpm cook checkout-impl
 ```
+
+#### 6. ✅ Make sure tests are passing.
 
 ## 📖 Appendices
 
