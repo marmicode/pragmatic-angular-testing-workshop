@@ -20,7 +20,6 @@
     {
       "plugin": "@nx/vite/plugin",
       "options": {},
-      /* Ignore root vitest.config.mts. */
       "exclude": ["vitest.config.mts"]
     }
   ],
