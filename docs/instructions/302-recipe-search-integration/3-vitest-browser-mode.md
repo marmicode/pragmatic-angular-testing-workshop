@@ -1,5 +1,5 @@
 ---
-sidebar_label: 3 - Vitest Browser Mode
+sidebar_label: 3. Vitest Browser Mode
 ---
 
 # Recipe Search Integration with Vitest Browser Mode

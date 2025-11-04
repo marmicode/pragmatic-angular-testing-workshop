@@ -1,5 +1,5 @@
 ---
-sidebar_label: 401 - Recipe Filter
+sidebar_label: 401. Recipe Filter
 ---
 
 # Recipe Filter

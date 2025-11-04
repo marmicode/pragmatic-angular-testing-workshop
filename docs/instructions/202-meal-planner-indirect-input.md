@@ -1,5 +1,5 @@
 ---
-sidebar_label: 202 - Meal Planner Indirect Input
+sidebar_label: 202. Meal Planner Indirect Input
 ---
 
 # Meal Planner Indirect Input

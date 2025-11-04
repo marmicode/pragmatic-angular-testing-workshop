@@ -1,5 +1,5 @@
 ---
-sidebar_label: 2 - Testing Library
+sidebar_label: 2. Testing Library
 ---
 
 # Recipe Search Integration with Testing Library

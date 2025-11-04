@@ -1,5 +1,5 @@
 ---
-sidebar_label: 503 - Testronaut - Recipe Search
+sidebar_label: 503. Testronaut - Recipe Search
 ---
 
 # Recipe Search Playwright Component Testing with Testronaut

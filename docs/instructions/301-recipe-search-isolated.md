@@ -1,5 +1,5 @@
 ---
-sidebar_label: 301 - Recipe Search Isolated
+sidebar_label: 301. Recipe Search Isolated
 ---
 
 # Recipe Search Isolated

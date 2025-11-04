@@ -1,5 +1,5 @@
 ---
-sidebar_label: 501 - Testronaut - Recipe Preview
+sidebar_label: 501. Testronaut - Recipe Preview
 ---
 
 # Recipe Preview Playwright Component Testing with Testronaut

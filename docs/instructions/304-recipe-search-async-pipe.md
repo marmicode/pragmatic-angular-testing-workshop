@@ -1,5 +1,5 @@
 ---
-sidebar_label: 304 - Recipe Search Async Pipe
+sidebar_label: 304. Recipe Search Async Pipe
 ---
 
 # Recipe Search Async Pipe

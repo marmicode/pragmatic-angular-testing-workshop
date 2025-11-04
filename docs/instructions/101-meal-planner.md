@@ -1,5 +1,5 @@
 ---
-sidebar_label: 101 - Meal Planner
+sidebar_label: 101. Meal Planner
 ---
 
 # Meal Planner

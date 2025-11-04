@@ -1,5 +1,5 @@
 ---
-sidebar_label: 102 - Meal Planner Reactive
+sidebar_label: 102. Meal Planner Reactive
 ---
 
 # Meal Planner Reactive

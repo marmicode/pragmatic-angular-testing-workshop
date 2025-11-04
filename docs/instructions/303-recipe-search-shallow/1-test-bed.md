@@ -1,5 +1,5 @@
 ---
-sidebar_label: 1 - TestBed
+sidebar_label: 1. TestBed
 ---
 
 # Recipe Search Shallow with `TestBed`

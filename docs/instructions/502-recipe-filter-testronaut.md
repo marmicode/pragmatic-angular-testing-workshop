@@ -1,5 +1,5 @@
 ---
-sidebar_label: 502 - Testronaut - Recipe Filter
+sidebar_label: 502. Testronaut - Recipe Filter
 ---
 
 # Recipe Filter Playwright Component Testing with Testronaut
