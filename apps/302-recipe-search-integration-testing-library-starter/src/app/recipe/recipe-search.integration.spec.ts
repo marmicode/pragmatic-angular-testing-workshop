@@ -1,5 +1,4 @@
-import { TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import { render, screen } from '@testing-library/angular';
 import { recipeMother } from '../testing/recipe.mother';
 import {
   provideRecipeRepositoryFake,
@@ -15,23 +14,12 @@ describe(RecipeSearch.name, () => {
   });
 
   async function mountRecipeSearch() {
-    TestBed.configureTestingModule({
-      providers: [provideRecipeRepositoryFake()],
-    });
-
-    TestBed.inject(RecipeRepositoryFake).setRecipes([
-      recipeMother.withBasicInfo('Burger').build(),
-      recipeMother.withBasicInfo('Salad').build(),
-    ]);
-
-    const fixture = TestBed.createComponent(RecipeSearch);
+    const { fixture } = await render(RecipeSearch);
     await fixture.whenStable();
 
     return {
       getRecipeNames() {
-        return fixture.debugElement
-          .queryAll(By.css('[data-testid=recipe-name]'))
-          .map((el) => el.nativeElement.textContent);
+        throw new Error('🚧 Work in progress!');
       },
     };
   }
