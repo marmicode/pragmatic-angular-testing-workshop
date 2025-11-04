@@ -54,14 +54,21 @@ The `cook` CLI allows you to cook exercises:
 pnpm cook
 ```
 
-## 📖 Tips
+## 🤖 Agentic Tutor
 
-### Choose a test runner
+Whenever you need help, you can ask the agentic tutor for a hint.
 
-- [Vitest](https://vitest.dev/) _(default and recommended)_
-- [Jest](https://jestjs.io/)
+You can use Claude or Cursor custom command: `/next-hint` or simply ask your favorite agent about "next hint".
 
-By default, this workspace uses Vitest, but you can downgrade to Jest if you prefer:
+Supported Agents:
+
+- Claude
+- Cursor
+- Gemini
+
+## 🎪 Downgrade to Jest
+
+By default, this workspace uses [Vitest](https://vitest.dev/), but you can downgrade to [Jest](https://jestjs.io/) if you prefer:
 
 ```sh
 # You will have to run this command each time you reset your local changes
