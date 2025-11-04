@@ -6,9 +6,7 @@ describe(MealRepositoryFake.name, () => {
   verifyMealRepositoryContract(createMealRepositoryFake);
 
   function createMealRepositoryFake() {
-    TestBed.configureTestingModule({
-      providers: [MealRepositoryFake],
-    });
+    TestBed.configureTestingModule({ providers: [MealRepositoryFake] });
     return { mealRepo: TestBed.inject(MealRepositoryFake) };
   }
 });
