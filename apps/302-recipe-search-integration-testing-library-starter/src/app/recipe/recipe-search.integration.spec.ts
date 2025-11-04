@@ -7,10 +7,10 @@ import {
 import { RecipeSearch } from './recipe-search.ng';
 
 describe(RecipeSearch.name, () => {
-  it('searches recipes without filtering', async () => {
-    const { getRecipeNames } = await mountRecipeSearch();
+  it.todo('🚧 searches recipes without filtering', async () => {
+    const { getRecipeNameEls } = await mountRecipeSearch();
 
-    expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
+    throw new Error('🚧 Work in progress!');
   });
 
   async function mountRecipeSearch() {
@@ -18,7 +18,7 @@ describe(RecipeSearch.name, () => {
     await fixture.whenStable();
 
     return {
-      getRecipeNames() {
+      getRecipeNameEls() {
         throw new Error('🚧 Work in progress!');
       },
     };
