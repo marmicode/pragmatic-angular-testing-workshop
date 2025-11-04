@@ -1,13 +1,13 @@
 ---
-sidebar_label: 301 - Recipe Search Isolated
+sidebar_label: 1 - TestBed
 ---
 
-# Recipe Search Isolated
+# Recipe Search Integration with `TestBed`
 
 ## Setup
 
 ```sh
-pnpm cook start 301-recipe-search-isolated
+pnpm cook start 302-recipe-search-integration-test-bed
 ```
 
 :::info ♻️ TDD option
@@ -21,16 +21,16 @@ You can choose to:
 
 ## 🎯 Goal #1: Test `RecipeSearch` with Real Server
 
-`RecipeSearch` component should fetch recipes using `RecipeRepository` on startup.
+`RecipeSearch` component should fetch recipes using `RecipeRepository` on startup and display them using `RecipePreview` component.
 
 **Implement tests** for `RecipeSearch` and make sure that:
 
-- `recipes` property is set with the recipes returned by `RecipeRepository`.
+- recipe names are displayed:
 
-```ts
-export class RecipeSearch {
-  recipes: Recipe[];
-}
+```html
+...
+<h2>Burger</h2>
+...
 ```
 
 ### 📝 Steps
@@ -41,7 +41,7 @@ export class RecipeSearch {
 pnpm test
 ```
 
-#### 2. Open `src/app/recipe/recipe-search.isolated.spec.ts`.
+#### 2. Open `src/app/recipe/recipe-search.integration.spec.ts`.
 
 #### 3. Configure the `TestBed` with HTTP client to reach the real server:
 
@@ -49,7 +49,7 @@ pnpm test
 TestBed.configureTestingModule({ providers: [provideHttpClient()] });
 ```
 
-#### 4. Check `component.recipes` property.
+#### 4. Query DOM and check names are displayed. _Cf. [query DOM with `fixture.debugElement`](#-tip-query-dom-with-fixturedebugelement)_
 
 #### 5. [optional] Checkout the implementation if you've opted for TDD option:
 
@@ -74,7 +74,7 @@ Therefore, we will replace the `RecipeRepository` service with a test double.
 pnpm test
 ```
 
-#### 2. Open `src/app/recipe/recipe-search.isolated.spec.ts`.
+#### 2. Open `src/app/recipe/recipe-search.integration.spec.ts`.
 
 #### 3. Configure the `TestBed` with a test double:
 
@@ -86,7 +86,7 @@ const fake = TestBed.inject(RecipeRepositoryFake);
 fake...
 ```
 
-#### 4. Check `component.recipes` property.
+#### 4. Query DOM and check names are displayed. _Cf. [query DOM with `fixture.debugElement`](#-tip-query-dom-with-fixturedebugelement)_
 
 #### 5. [optional] Checkout the implementation if you've opted for TDD option:
 
@@ -98,8 +98,12 @@ pnpm cook checkout-impl
 
 ## 📖 Appendices
 
-### 🎁 Tip: polling until success with `expect.poll`
+### 🎁 Tip: Query DOM with `fixture.debugElement`
+
+You can query one or multiple elements using, respectively, `query` and `queryAll` methods.
 
 ```ts
-await expect.poll(() => getSomething()).toBe(42);
+const item = fixture.debugElement.query(By.css('.my-item')).nativeElement.textContent;
+
+const items = fixture.debugElement.queryAll(By.css('.my-item')).map((el) => el.nativeElement.textContent);
 ```
