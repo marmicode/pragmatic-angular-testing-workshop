@@ -2,7 +2,7 @@ import { expect, test } from '@testronaut/angular';
 import { RecipeFilter } from './recipe-filter.ng';
 
 test.describe('RecipeFilter', () => {
-  test('should trigger filterChange', async ({ page, mount }) => {
+  test('triggers filterChange', async ({ page, mount }) => {
     const { outputs } = await mount(RecipeFilter);
 
     await page.getByLabel('Keywords').fill('Burger');

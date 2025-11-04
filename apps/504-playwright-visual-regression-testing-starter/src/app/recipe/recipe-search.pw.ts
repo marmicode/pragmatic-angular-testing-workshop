@@ -56,7 +56,7 @@ const test = base.extend<{
 });
 
 test.describe('RecipeSearch', () => {
-  test('should show recipes', async ({ page, mountRecipeSearch }) => {
+  test('shows recipes', async ({ page, mountRecipeSearch }) => {
     await mountRecipeSearch();
 
     await expect(page.getByRole('heading', { level: 2 })).toHaveText([
@@ -65,7 +65,7 @@ test.describe('RecipeSearch', () => {
     ]);
   });
 
-  test('should filter recipes', async ({ page, mountRecipeSearch }) => {
+  test('filters recipes', async ({ page, mountRecipeSearch }) => {
     await mountRecipeSearch();
 
     await page.getByLabel('Keywords').fill('Bur');
@@ -75,10 +75,7 @@ test.describe('RecipeSearch', () => {
     ]);
   });
 
-  test('should add recipe to meal plan', async ({
-    page,
-    mountRecipeSearch,
-  }) => {
+  test('adds recipe to meal plan', async ({ page, mountRecipeSearch }) => {
     const { getMealPlannerRecipes } = await mountRecipeSearch();
 
     await page.getByRole('button', { name: 'ADD' }).first().click();
@@ -89,7 +86,7 @@ test.describe('RecipeSearch', () => {
       .toContainEqual(expect.objectContaining({ name: 'Burger' }));
   });
 
-  test('should disable add button if recipe is already in meal plan', async ({
+  test('disables add button if recipe is already in meal plan', async ({
     page,
     mountRecipeSearch,
   }) => {

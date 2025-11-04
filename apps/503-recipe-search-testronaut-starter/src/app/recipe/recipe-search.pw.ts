@@ -43,22 +43,19 @@ const test = base.extend<{
 });
 
 test.describe('RecipeSearch', () => {
-  test('should show recipes', async ({ page, mountRecipeSearch }) => {
+  test('shows recipes', async ({ page, mountRecipeSearch }) => {
     test.skip(true, '🚧 work in progress!');
   });
 
-  test('should filter recipes', async ({ page, mountRecipeSearch }) => {
+  test('filters recipes', async ({ page, mountRecipeSearch }) => {
     test.skip(true, '🚧 work in progress!');
   });
 
-  test('should add recipe to meal plan', async ({
-    page,
-    mountRecipeSearch,
-  }) => {
+  test('adds recipe to meal plan', async ({ page, mountRecipeSearch }) => {
     test.skip(true, '🚧 work in progress!');
   });
 
-  test('should disable add button if recipe is already in meal plan', async ({
+  test('disables add button if recipe is already in meal plan', async ({
     page,
     mountRecipeSearch,
   }) => {
