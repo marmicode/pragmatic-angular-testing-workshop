@@ -8,8 +8,6 @@ sidebar_label: 303 - Recipe Search Shallow
 
 ```sh
 pnpm cook start 303-recipe-search-shallow-test-bed
-# or
-pnpm cook start 303-recipe-search-shallow-testing-library
 ```
 
 :::info ♻️ TDD option
@@ -23,13 +21,12 @@ You can choose to:
 
 ## 🎯 Goal: Test `RecipeSearch`
 
-Same goal as [previous exercise](./302-recipe-search-integration/1-test-bed.md) _(i.e. `RecipeSearch` should call `RecipeRepository.search()` on startup.)_
-
-But let's check children properties this time.
+`RecipeSearch` component should fetch recipes using `RecipeRepository` on startup and display them using `RecipePreview` component.
+But, this time, let's check that the loaded recipes are forwarded as inputs to children.
 
 **Implement tests** for `RecipeSearch` and make sure that:
 
-1. recipes are passed to child components.
+- recipes are passed to child components.
 
 ### 📝 Steps
 
@@ -52,7 +49,7 @@ TestBed.overrideComponent(RecipeSearch, {
 });
 ```
 
-#### 4. Query DOM and check child components properties. (Cf. [query DOM with `fixture.debugElement`](302-recipe-search-integration/1-test-bed.md#-tip-query-dom-with-fixturedebugelement)] & [access element properties](#-tip-access-element-properties))
+#### 4. Query DOM and check child components properties. (Cf. [query DOM with `fixture.debugElement`](#-tip-query-dom-with-fixturedebugelement)] & [access element properties](#-tip-access-element-properties))
 
 #### 5. [optional] Checkout the implementation if you've opted for TDD option:.
 
@@ -60,10 +57,22 @@ TestBed.overrideComponent(RecipeSearch, {
 pnpm cook checkout-impl
 ```
 
+#### 6. ✅ Make sure tests are passing.
+
 ## 📖 Appendices
+
+### 🎁 Tip: Query DOM with `fixture.debugElement`
+
+You can query one or multiple elements using, respectively, `query` and `queryAll` methods.
+
+```ts
+const debugElement = fixture.debugElement.query(By.css('.my-item'));
+
+const debugElements = fixture.debugElement.queryAll(By.css('.my-item'));
+```
 
 ### 🎁 Tip: Access element properties
 
 ```ts
-fixture.query(By.css('...')).properties;
+fixture.query(By.css('...')).properties.myInput;
 ```
