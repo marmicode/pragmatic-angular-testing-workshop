@@ -23,7 +23,7 @@ You can choose to:
 
 ## 🎯 Goal: Test `RecipeSearch`
 
-Same goal as [previous exercise](302-recipe-search-integration.md) _(i.e. `RecipeSearch` should call `RecipeRepository.search()` on startup.)_
+Same goal as [previous exercise](./302-recipe-search-integration/1-test-bed.md) _(i.e. `RecipeSearch` should call `RecipeRepository.search()` on startup.)_
 
 But let's check children properties this time.
 
@@ -52,7 +52,7 @@ TestBed.overrideComponent(RecipeSearch, {
 });
 ```
 
-#### 4. Query DOM and check child components properties. (Cf. [query DOM with `fixture.debugElement`](302-recipe-search-integration.md#-tip-query-dom-with-fixturedebugelement)] & [access element properties](#-tip-access-element-properties))
+#### 4. Query DOM and check child components properties. (Cf. [query DOM with `fixture.debugElement`](302-recipe-search-integration/1-test-bed.md#-tip-query-dom-with-fixturedebugelement)] & [access element properties](#-tip-access-element-properties))
 
 #### 5. [optional] Checkout the implementation if you've opted for TDD option:.
 
