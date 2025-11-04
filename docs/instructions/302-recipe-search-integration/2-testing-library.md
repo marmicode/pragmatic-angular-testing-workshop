@@ -49,7 +49,9 @@ pnpm test
 await render(RecipeSearch, { providers: [provideHttpClient()] });
 ```
 
-#### 4. Query DOM and check names are displayed. _Cf. [Testing Library queries docs](#-testing-library-queries-docs--or-how-to-choose-the-right-query)_
+#### 4. Query DOM and check names are displayed.
+
+Cf. [Testing Library Queries docs](#-testing-library-queries-docs--or-how-to-choose-the-right-query)
 
 #### 5. [optional] Checkout the implementation if you've opted for TDD option:
 

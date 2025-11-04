@@ -49,7 +49,9 @@ pnpm test
 TestBed.configureTestingModule({ providers: [provideHttpClient()] });
 ```
 
-#### 4. Query DOM and check names are displayed. _Cf. [query DOM with `fixture.debugElement`](#-tip-query-dom-with-fixturedebugelement)_
+#### 4. Query DOM and check names are displayed.
+
+Cf. [query DOM with `fixture.debugElement`](#-tip-query-dom-with-fixturedebugelement)
 
 #### 5. [optional] Checkout the implementation if you've opted for TDD option:
 
@@ -86,7 +88,9 @@ const fake = TestBed.inject(RecipeRepositoryFake);
 fake...
 ```
 
-#### 4. Query DOM and check names are displayed. _Cf. [query DOM with `fixture.debugElement`](#-tip-query-dom-with-fixturedebugelement)_
+#### 4. Query DOM and check names are displayed.
+
+Cf. [query DOM with `fixture.debugElement`](#-tip-query-dom-with-fixturedebugelement)
 
 #### 5. [optional] Checkout the implementation if you've opted for TDD option:
 

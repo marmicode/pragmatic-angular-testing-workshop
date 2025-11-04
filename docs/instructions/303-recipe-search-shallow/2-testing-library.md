@@ -1,13 +1,13 @@
 ---
-sidebar_label: 1 - TestBed
+sidebar_label: 2 - Testing Library
 ---
 
-# Recipe Search Shallow with `TestBed`
+# Recipe Search Shallow with Testing Library
 
 ## Setup
 
 ```sh
-pnpm cook start 303-recipe-search-shallow-test-bed
+pnpm cook start 303-recipe-search-shallow-testing-library
 ```
 
 :::info ♻️ TDD option
@@ -41,18 +41,29 @@ pnpm test
 #### 3. Override component's imports & schema:
 
 ```ts
-TestBed.overrideComponent(RecipeSearch, {
-  set: {
-    imports: [],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+await render(RecipeSearch, {
+  ...
+  configureTestBed(testBed) {
+    ...
+    testBed.overrideComponent(RecipeSearch, {
+      set: {
+        imports: [],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      },
+    });
+    ...
   },
 });
 ```
 
-#### 4. Query DOM and check child components properties
+#### 4. Query DOM and check child components properties.
 
 - Cf. [Query DOM with `fixture.debugElement`](#-tip-query-dom-with-fixturedebugelement)
 - Cf. [Access element properties](#-tip-access-element-properties)
+
+:::tip
+Note that `RecipePreview` component host element has a `data-testid="recipe-preview"` attribute that you can query with Testing Library.
+:::
 
 #### 5. [optional] Checkout the implementation if you've opted for TDD option:.
 
@@ -64,18 +75,20 @@ pnpm cook checkout-impl
 
 ## 📖 Appendices
 
-### 🎁 Tip: Query DOM with `fixture.debugElement`
+### 🔗 `@testing-library/angular`'s `render` docs
 
-You can query one or multiple elements using, respectively, `query` and `queryAll` methods.
+[https://testing-library.com/docs/angular-testing-library/api#render](https://testing-library.com/docs/angular-testing-library/api#render)
 
-```ts
-const debugElement = fixture.debugElement.query(By.css('.my-item'));
+### 🔗 Testing Library Queries docs — or how to choose the right query
 
-const debugElements = fixture.debugElement.queryAll(By.css('.my-item'));
-```
+[https://testing-library.com/docs/queries/about](https://testing-library.com/docs/queries/about)
 
 ### 🎁 Tip: Access element properties
 
+You can transform any `HTMLElement` into an Angular `DebugElement` to access the properties forwarded by parent component:
+
 ```ts
-fixture.query(By.css('...')).properties.myInput;
+const element = screen.getBy...;
+
+new DebugElement(element).properties.myInput;
 ```
