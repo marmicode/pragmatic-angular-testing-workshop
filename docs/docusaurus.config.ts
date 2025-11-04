@@ -66,6 +66,14 @@ const config: Config = {
           position: 'left',
           label: 'Instructions',
         },
+        {
+          label: '📺 Video Course',
+          href: 'https://courses.marmicode.io/courses/pragmatic-angular-testing?utm_source=angular-vitest-mini-workshop&utm_medium=sidenav&coupon=NGDE_KITCHEN_SPECIAL',
+        },
+        {
+          label: '👨🏻‍🏫 3-Day Workshop',
+          href: 'https://luma.com/27f85isx?coupon=NGDE_KITCHEN_SPECIAL',
+        },
       ],
     },
 
