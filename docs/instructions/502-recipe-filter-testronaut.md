@@ -1,13 +1,13 @@
 ---
-sidebar_label: 502 - Playwright CT - Recipe Filter
+sidebar_label: 502 - Testronaut - Recipe Filter
 ---
 
-# Recipe Filter Playwright Component Testing
+# Recipe Filter Playwright Component Testing with Testronaut
 
 ## Setup
 
 ```sh
-pnpm cook start 502-recipe-filter-ct
+pnpm cook start 502-recipe-filter-testronaut
 ```
 
 :::info ♻️ TDD option

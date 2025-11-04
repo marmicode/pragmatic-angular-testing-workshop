@@ -1,13 +1,13 @@
 ---
-sidebar_label: 501 - Playwright CT - Recipe Preview
+sidebar_label: 501 - Testronaut - Recipe Preview
 ---
 
-# Recipe Preview Playwright Component Testing
+# Recipe Preview Playwright Component Testing with Testronaut
 
 ## Setup
 
 ```sh
-pnpm cook start 501-recipe-preview-ct
+pnpm cook start 501-recipe-preview-testronaut
 ```
 
 :::info ♻️ TDD option

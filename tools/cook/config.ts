@@ -104,15 +104,15 @@ const exercises: Exercise[] = [
     implementationFiles: [files.recipeFilter],
   },
   {
-    id: '501-recipe-preview-ct',
+    id: '501-recipe-preview-testronaut',
     name: '501 - Recipe Preview Playwright Component Testing',
   },
   {
-    id: '502-recipe-filter-ct',
+    id: '502-recipe-filter-testronaut',
     name: '502 - Recipe Filter Playwright Component Testing',
   },
   {
-    id: '503-recipe-search-ct',
+    id: '503-recipe-search-testronaut',
     name: '503 - Recipe Search Playwright Component Testing',
   },
   {

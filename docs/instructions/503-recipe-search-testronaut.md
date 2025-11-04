@@ -1,13 +1,13 @@
 ---
-sidebar_label: 503 - Playwright CT - Recipe Search
+sidebar_label: 503 - Testronaut - Recipe Search
 ---
 
-# Recipe Search Playwright Component Testing
+# Recipe Search Playwright Component Testing with Testronaut
 
 ## Setup
 
 ```sh
-pnpm cook start 503-recipe-search-ct
+pnpm cook start 503-recipe-search-testronaut
 ```
 
 :::info ♻️ TDD option
