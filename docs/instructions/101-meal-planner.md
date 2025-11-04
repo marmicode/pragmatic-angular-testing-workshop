@@ -56,7 +56,7 @@ pnpm test
 
 #### 4. Implement tests.
 
-#### 5. Checkout the implementation if you didn't do it already.
+#### 5. [optional] Checkout the implementation if you've opted for TDD option:
 
 ```sh
 pnpm cook checkout-impl

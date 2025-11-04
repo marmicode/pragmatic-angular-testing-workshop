@@ -54,7 +54,7 @@ TestBed.overrideComponent(RecipeSearch, {
 
 #### 4. Query DOM and check child components properties. (Cf. [query DOM with `fixture.debugElement`](302-recipe-search-integration.md#-tip-query-dom-with-fixturedebugelement)] & [access element properties](#-tip-access-element-properties))
 
-#### 5. Checkout the implementation if you didn't do it already.
+#### 5. [optional] Checkout the implementation if you've opted for TDD option:.
 
 ```sh
 pnpm cook checkout-impl

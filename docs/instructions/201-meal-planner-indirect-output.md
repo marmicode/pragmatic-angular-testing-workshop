@@ -42,7 +42,7 @@ pnpm test
 
 #### 4. Check that the fake repo contains the added recipe.
 
-#### 5. Checkout the implementation if you didn't do it already.
+#### 5. [optional] Checkout the implementation if you've opted for TDD option:.
 
 ```sh
 pnpm cook checkout-impl
@@ -62,7 +62,7 @@ pnpm test
 
 #### 4. Check that the spies were called properly.
 
-#### 5. Checkout the implementation if you didn't do it already.
+#### 5. [optional] Checkout the implementation if you've opted for TDD option:.
 
 ```sh
 pnpm cook checkout-impl

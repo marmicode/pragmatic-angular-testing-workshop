@@ -41,7 +41,7 @@ pnpm test
 
 #### 5. Query DOM and check child recipe preview components properties. (Cf. [query DOM with `fixture.debugElement`](./302-recipe-search-integration.md#-tip-query-dom-with-fixturedebugelement)] & [access element properties](./303-recipe-search-shallow.md#-tip-access-element-properties))
 
-#### 6. Checkout the implementation if you didn't do it already.
+#### 6. [optional] Checkout the implementation if you've opted for TDD option:.
 
 ```sh
 pnpm cook checkout-impl
@@ -49,10 +49,11 @@ pnpm cook checkout-impl
 
 ## 📖 Appendices
 
-### 🎁 Tip: Trigger events using `DebugElement.triggerEventHandler`
+### 🎁 Tip: Trigger events using `DebugElement#triggerEventHandler`
 
-You can trigger both native and custom events using `DebugElement.triggerEventHandler`.
+You can trigger a custom event as an output using `DebugElement#triggerEventHandler` if a component was "shallowed".
 
 ```ts
-fixture.query(...).triggerEventHandler('myEventName', myEvent);
+const debugElement = fixture.query(...);
+debugElement.triggerEventHandler('myOutput', myValue);
 ```

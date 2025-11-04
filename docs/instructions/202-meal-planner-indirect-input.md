@@ -53,7 +53,7 @@ pnpm test
 
 #### 5. Check that the spy was called properly.
 
-#### 6. Checkout the implementation if you didn't do it already.
+#### 6. [optional] Checkout the implementation if you've opted for TDD option:.
 
 ```sh
 pnpm cook checkout-impl

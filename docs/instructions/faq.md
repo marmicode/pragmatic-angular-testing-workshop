@@ -16,7 +16,7 @@ TestBed.overrideComponent(MyThing, {
 
 ## Not getting the expected result
 
-- [ ] Did you wait for change detection to be triggered and the component to be stable `fixture.whenStable()`?
+- [ ] Did you wait for change detection to be triggered and the component to be stable `fixture.whenStable()`? or did you use a retry-able assertion such as `await expect.element(...)...` or `await expect.poll(() => ...)`?
 - [ ] Did you `await` all functions that return a promise? (e.g. harnesses)
 
 ## How to stub a function that returns an observable?
