@@ -7,15 +7,16 @@
     "postinstall": "playwright install",
     "nx": "nx",
     "start": "nx serve",
+    "test": "nx test --no-tui --watch",
     "build": "nx build",
     "cook": "node --experimental-strip-types tools/cook/main.ts",
     "downgrade-to-jest": "node --experimental-strip-types tools/downgrade-to-jest.ts",
     "downgrade-to-vitest-3": "node --experimental-strip-types tools/downgrade-to-vitest-3.ts",
-    "test": "nx test --no-tui --watch",
-    "test-ui": "nx test-ui",
-    "test-ui:watch": "PWTEST_WATCH=1 nx test-ui",
     "playwright-docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/ -it mcr.microsoft.com/playwright:v1.39.0-jammy /bin/bash",
-    "reset": "rm -rf node_modules/.vite; nx reset"
+    "reset": "rm -rf node_modules/.vite; nx reset",
+    "testronaut": "nx testronaut",
+    "testronaut:watch": "PWTEST_WATCH=1 nx testronaut",
+    "verify": "nx run-many -t test,testronaut --parallel=1 --pass-with-no-tests"
   },
   "dependencies": {
     "@angular/animations": "20.2.4",
