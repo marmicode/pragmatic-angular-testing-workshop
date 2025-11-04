@@ -75,6 +75,7 @@ jobs:
         with:
           name: 🎭 Playwright Report
           path: dist/.playwright
+          include-hidden-files: true
           retention-days: 7
 
   deploy-gh-pages:
