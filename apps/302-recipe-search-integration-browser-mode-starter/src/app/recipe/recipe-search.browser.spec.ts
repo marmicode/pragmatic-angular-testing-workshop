@@ -15,15 +15,6 @@ describe(RecipeSearch.name, () => {
   });
 
   async function mountRecipeSearch() {
-    TestBed.configureTestingModule({
-      providers: [provideRecipeRepositoryFake()],
-    });
-
-    TestBed.inject(RecipeRepositoryFake).setRecipes([
-      recipeMother.withBasicInfo('Burger').build(),
-      recipeMother.withBasicInfo('Salad').build(),
-    ]);
-
     TestBed.createComponent(RecipeSearch);
 
     return {
