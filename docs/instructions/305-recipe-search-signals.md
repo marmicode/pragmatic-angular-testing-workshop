@@ -1,13 +1,13 @@
 ---
-sidebar_label: 304. Recipe Search Async Pipe
+sidebar_label: 305. Recipe Search Signals
 ---
 
-# Recipe Search Async Pipe
+# Recipe Search Signals
 
 ## Setup
 
 ```sh
-pnpm cook start 304-recipe-search-async-pipe
+pnpm cook start 305-recipe-search-signals
 ```
 
 :::info ♻️ TDD option
@@ -19,9 +19,9 @@ You can choose to:
 
 :::
 
-## 🎯 Goal: Use `async` pipe and fix tests
+## 🎯 Goal: Use signals and fix tests
 
-Let's go reactive and see what happens.
+Let's go reactive with signals and see what happens.
 
 ### 📝 Steps
 
@@ -37,22 +37,7 @@ pnpm test
 pnpm cook checkout-impl
 ```
 
-> This will replace the imperative approach:
->
-> ```ts
-> @Component({
->   template: `@for (recipe of recipes; track recipe.id) {
->     ...
->   }`,
-> })
-> class RecipeSearch {
->   ngOnInit() {
->     this._repo.search().subscribe((recipes) => (this.recipes = recipes));
->   }
-> }
-> ```
->
-> with a reactive approach:
+> This will replace the RxJS reactive approach:
 >
 > ```ts
 > @Component({
@@ -62,6 +47,19 @@ pnpm cook checkout-impl
 > })
 > class RecipeSearch {
 >   recipes$ = inject(RecipeRepository).search();
+> }
+> ```
+>
+> with a signal-based reactive approach:
+>
+> ```ts
+> @Component({
+>   template: `@for (recipe of recipes(); track recipe.id) {
+>     ...
+>   }`,
+> })
+> class RecipeSearch {
+>   recipes$ = this._repo.search();
 > }
 > ```
 
