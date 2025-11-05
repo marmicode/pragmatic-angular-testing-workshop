@@ -1,13 +1,13 @@
 ---
-sidebar_label: 2. Testing Library
+sidebar_label: 3. Vitest Browser Mode
 ---
 
-# Recipe Search Shallow with Testing Library
+# Recipe Search Shallow with Vitest Browser Mode
 
 ## Setup
 
 ```sh
-pnpm cook start 303-recipe-search-shallow-testing-library
+pnpm cook start 303-recipe-search-shallow-browser-mode
 ```
 
 :::info ♻️ TDD option
@@ -41,24 +41,17 @@ pnpm test
 #### 3. Override component's imports & schema:
 
 ```ts
-await render(RecipeSearch, {
-  ...
-  configureTestBed(testBed) {
-    ...
-    testBed.overrideComponent(RecipeSearch, {
-      set: {
-        imports: [],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      },
-    });
-    ...
+TestBed.overrideComponent(RecipeSearch, {
+  set: {
+    imports: [],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
   },
 });
 ```
 
 #### 4. Query DOM and check child components properties.
 
-- Cf. [Testing Library Queries docs](#-testing-library-queries-docs--or-how-to-choose-the-right-query)
+- Cf. [Query DOM with Vitest Browser Mode](#-tip-how-to-query-the-dom-and-make-assertions-with-vitest-browser-mode)
 - Cf. [Access element properties](#-tip-access-element-properties)
 
 :::tip
@@ -75,20 +68,17 @@ pnpm cook checkout-impl
 
 ## 📖 Appendices
 
-### 🔗 `@testing-library/angular`'s `render` docs
+### 🎁 Tip: How to query the DOM and make assertions with Vitest Browser Mode
 
-[https://testing-library.com/docs/angular-testing-library/api#render](https://testing-library.com/docs/angular-testing-library/api#render)
-
-### 🔗 Testing Library Queries docs — or how to choose the right query
-
-[https://testing-library.com/docs/queries/about](https://testing-library.com/docs/queries/about)
+- ⚡️ Querying with Vitest Browser Mode: https://vitest.dev/guide/browser/locators.html
+- ⚡️ Asserting with Vitest Browser Mode: https://vitest.dev/guide/browser/assertion-api.html
 
 ### 🎁 Tip: Access element properties
 
 You can transform any `HTMLElement` into an Angular `DebugElement` to access the properties forwarded by parent component:
 
 ```ts
-const element = screen.getBy...;
+const elements = page.getByXXX().elements();
 
-new DebugElement(element).properties.myInput;
+const myItems = elements.map((el) => new DebugElement(el).properties.myItem);
 ```
