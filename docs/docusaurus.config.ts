@@ -1,6 +1,7 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import { courseLink, workshopLink } from './links';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -68,11 +69,11 @@ const config: Config = {
         },
         {
           label: '📺 Video Course',
-          href: 'https://courses.marmicode.io/courses/pragmatic-angular-testing?utm_source=angular-vitest-mini-workshop&utm_medium=sidenav&coupon=NGDE_KITCHEN_SPECIAL',
+          href: courseLink,
         },
         {
           label: '👨🏻‍🏫 3-Day Workshop',
-          href: 'https://luma.com/27f85isx?coupon=NGDE_KITCHEN_SPECIAL',
+          href: workshopLink,
         },
       ],
     },

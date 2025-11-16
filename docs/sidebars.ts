@@ -1,4 +1,5 @@
 import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
+import { courseLink, workshopLink } from './links';
 
 const sidebars: SidebarsConfig = {
   instructions: [
@@ -11,12 +12,12 @@ const sidebars: SidebarsConfig = {
         {
           type: 'link',
           label: '👨🏻‍🏫 3-Day Workshop (30% off)',
-          href: 'https://luma.com/27f85isx?coupon=NGDE_KITCHEN_SPECIAL',
+          href: workshopLink,
         },
         {
           type: 'link',
           label: '📺 Video Course (60% off)',
-          href: 'https://courses.marmicode.io/courses/pragmatic-angular-testing?utm_source=angular-vitest-mini-workshop&utm_medium=sidenav&coupon=NGDE_KITCHEN_SPECIAL',
+          href: courseLink,
         },
       ],
     },
