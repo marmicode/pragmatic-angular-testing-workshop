@@ -71,11 +71,13 @@ const exercises: Exercise[] = [
   {
     id: '304-recipe-search-async-pipe',
     name: '304 - Recipe Search Async Pipe',
+    forceTdd: true,
     implementationFiles: [files.recipeSearch],
   },
   {
     id: '305-recipe-search-signals',
     name: '305 - Recipe Search Signals',
+    forceTdd: true,
     implementationFiles: [files.recipeSearch],
   },
   {

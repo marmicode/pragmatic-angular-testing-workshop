@@ -221,13 +221,17 @@ async function goToExercise(ctx: Context, exerciseId?: string) {
   let tdd = true;
 
   if (selectedExercise.implementationFiles) {
-    const tddChoice = await promptAdapter.prompt<{ useTdd: boolean }>({
-      type: 'confirm',
-      name: 'useTdd',
-      message: 'Do you want to use TDD?',
-      initial: false,
-    });
-    tdd = tddChoice.useTdd;
+    if (selectedExercise.forceTdd) {
+      tdd = true;
+    } else {
+      const tddChoice = await promptAdapter.prompt<{ useTdd: boolean }>({
+        type: 'confirm',
+        name: 'useTdd',
+        message: 'Do you want to use TDD?',
+        initial: false,
+      });
+      tdd = tddChoice.useTdd;
+    }
   }
 
   console.log(`\nSetting up exercise: ${selectedExercise.name}`);

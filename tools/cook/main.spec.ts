@@ -57,6 +57,21 @@ describe('cook', () => {
     ]);
   });
 
+  it('uses TDD mode when forceTdd is true', async () => {
+    const { executedCommands } = await runMain({
+      choices: { exercise: '3-recipe-search-async-pipe' },
+      nxJsonContent: {},
+    });
+
+    expect(executedCommands).toEqual([
+      'git switch main',
+      'git branch -D cooking || exit 0',
+      'git switch -c cooking',
+      'git add .',
+      'git commit -m "feat: ✨ focus on 3-recipe-search-async-pipe-starter"',
+    ]);
+  });
+
   it('checks out solution', async () => {
     const { executedCommands, files } = await runMain({
       choices: { command: 'solution', confirmOverwrite: true },
@@ -150,6 +165,12 @@ async function runMain({
       implementationFiles: ['src/app/recipe/recipe-search.ng.ts'],
     },
     { id: '2-test-double', name: 'Test Double' },
+    {
+      id: '3-recipe-search-async-pipe',
+      name: 'Recipe Search Async Pipe',
+      forceTdd: true,
+      implementationFiles: ['src/app/recipe/recipe-search.ng.ts'],
+    },
   ];
 
   await main(args, {
