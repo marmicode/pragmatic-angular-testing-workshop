@@ -29,6 +29,8 @@ stub.mockReturnValue(of(42));
 
 ## `Error: listen EACCES: permission denied`
 
+Cf. [Vitest issue #9035](https://github.com/vitest-dev/vitest/issues/9035).
+
 When using Vitest Browser mode on some systems, you may encounter the following error:
 
 ```
