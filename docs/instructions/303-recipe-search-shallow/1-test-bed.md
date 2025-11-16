@@ -69,9 +69,9 @@ pnpm cook checkout-impl
 You can query one or multiple elements using, respectively, `query` and `queryAll` methods.
 
 ```ts
-const debugElement = fixture.debugElement.query(By.css('.my-item'));
+const heading = fixture.debugElement.query(By.css('h2'));
 
-const debugElements = fixture.debugElement.queryAll(By.css('.my-item'));
+const headings = fixture.debugElement.queryAll(By.css('h2'));
 ```
 
 ### 🎁 Tip: Access element properties
