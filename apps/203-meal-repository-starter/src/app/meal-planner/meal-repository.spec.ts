@@ -4,11 +4,17 @@ import { recipeMother } from '../testing/recipe.mother';
 import { provideLocalStorageFake } from '../shared/local-storage.fake';
 
 describe(MealRepository.name, () => {
-  it.todo('🚧 adds recipes');
+  it.todo('🚧 adds recipes', async () => {
+    throw new Error('🚧 Work in progress!');
+  });
 
-  it.todo('🚧 returns empty array when storage is empty');
+  it.todo('🚧 returns empty array when storage is empty', async () => {
+    throw new Error('🚧 Work in progress!');
+  });
 
-  it.todo('🚧 returns empty array when storage value is invalid');
+  it.todo('🚧 returns empty array when storage value is invalid', async () => {
+    throw new Error('🚧 Work in progress!');
+  });
 
   function createMealRepository() {
     const { getMealRepo, ...utils } = setUpMealRepository();

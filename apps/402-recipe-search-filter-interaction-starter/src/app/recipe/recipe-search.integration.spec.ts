@@ -15,7 +15,9 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNameEls()[1]).toHaveTextContent('Salad');
   });
 
-  it.todo('🚧 filters recipes by keywords');
+  it.todo('🚧 filters recipes by keywords', async () => {
+    throw new Error('🚧 Work in progress!');
+  });
 
   async function mountRecipeSearch() {
     const { fixture } = await render(RecipeSearch, {

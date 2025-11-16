@@ -13,7 +13,9 @@ describe(RecipeSearch.name, () => {
     expect(getRecipeNames()).toEqual(['Burger', 'Salad']);
   });
 
-  it.todo('🚧 filters recipes by keywords');
+  it.todo('🚧 filters recipes by keywords', async () => {
+    throw new Error('🚧 Work in progress!');
+  });
 
   function createComponent() {
     TestBed.configureTestingModule({

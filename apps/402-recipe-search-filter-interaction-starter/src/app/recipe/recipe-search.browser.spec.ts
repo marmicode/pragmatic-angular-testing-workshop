@@ -16,7 +16,9 @@ describe(RecipeSearch.name, () => {
     await expect.element(getRecipeNameEls().nth(1)).toHaveTextContent('Salad');
   });
 
-  it.todo('🚧 filters recipes by keywords');
+  it.todo('🚧 filters recipes by keywords', async () => {
+    throw new Error('🚧 Work in progress!');
+  });
 
   async function mountRecipeSearch() {
     TestBed.configureTestingModule({

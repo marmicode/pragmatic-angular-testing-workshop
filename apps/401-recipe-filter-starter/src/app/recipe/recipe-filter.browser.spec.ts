@@ -5,7 +5,9 @@ import { page } from 'vitest/browser';
 import { RecipeFilter } from './recipe-filter.ng';
 
 describe(RecipeFilter.name, () => {
-  it.todo('🚧 triggers filterChange output');
+  it.todo('🚧 triggers filterChange output', async () => {
+    throw new Error('🚧 Work in progress!');
+  });
 
   async function mountRecipeFilter() {
     const filterChangeSpy = vi.fn();
