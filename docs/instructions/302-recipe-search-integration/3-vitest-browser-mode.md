@@ -105,5 +105,5 @@ pnpm cook checkout-impl
 
 ### 🎁 Tip: How to query the DOM and make assertions with Vitest Browser Mode
 
-- ⚡️ Querying with Vitest Browser Mode: https://vitest.dev/guide/browser/locators.html
-- ⚡️ Asserting with Vitest Browser Mode: https://vitest.dev/guide/browser/assertion-api.html
+- ⚡️ Querying with Vitest Browser Mode: https://vitest.dev/api/browser/locators
+- ⚡️ Asserting with Vitest Browser Mode: https://vitest.dev/api/browser/assertions
